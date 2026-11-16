@@ -292,6 +292,56 @@
   .month-ref{background:var(--primary-soft);border:1px solid #cfdcfb;border-radius:12px;padding:10px 14px;margin-bottom:14px;}
   .month-ref .mini-list li{padding:4px 0;border:none;font-size:13.5px;}
 
+  /* 生涯マンダラ(中心=自分の未来、まわりに8分野、各分野に8つの夢) */
+  .seg.four{grid-template-columns:repeat(4,1fr);}
+  .life-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .life-head .count{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--sub);}
+  .life-back{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .life-back b{font-size:15.5px;}
+  .mandala{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:500px;margin:0 auto;}
+  .mtile{aspect-ratio:1/1;border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px 9px;display:flex;flex-direction:column;gap:3px;text-align:left;overflow:hidden;min-width:0;transition:border-color .15s,box-shadow .15s;}
+  .mtile:hover{border-color:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,.1);}
+  .mtile.center{background:var(--navy);border-color:var(--navy);color:#fff;justify-content:center;text-align:center;align-items:center;}
+  .mt-name{font-weight:700;font-size:13px;line-height:1.35;color:var(--primary-ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex-shrink:0;}
+  .mtile.center .mt-name{color:#a8c0ff;font-size:11.5px;}
+  .mt-theme,.mt-text{font-size:12.5px;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;flex:1;min-height:0;word-break:break-word;}
+  .mtile.center .mt-theme{color:#fff;font-weight:700;flex:none;-webkit-line-clamp:5;}
+  .mt-empty{color:var(--faint);}
+  .mt-dots{display:flex;gap:3px;flex-shrink:0;}
+  .mt-dots i{width:7px;height:7px;border-radius:50%;background:#e1e6ef;}
+  .mt-dots i.doing{background:#7aa2f7;} .mt-dots i.ongoing{background:#0e9f8a;} .mt-dots i.done{background:var(--green);} .mt-dots i.dropped{background:#b6c0d2;} .mt-dots i.todo.has{background:#c3cbd9;}
+  .mt-foot{font-size:11px;color:var(--sub);flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .mt-foot.over{color:var(--amber);font-weight:700;}
+  .mtile.dream{border-left:4px solid #d5dbe6;}
+  .mtile.dream.doing{border-left-color:#7aa2f7;} .mtile.dream.ongoing{border-left-color:#0e9f8a;} .mtile.dream.done{border-left-color:var(--green);background:#f4fbf8;}
+  .mtile.dream.dropped{opacity:.55;} .mtile.dream.dropped .mt-text{text-decoration:line-through;}
+  .dtag{font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 8px;white-space:nowrap;flex-shrink:0;background:#eef1f6;color:var(--sub);}
+  .dtag.doing{background:var(--primary-soft);color:var(--primary-dark);} .dtag.ongoing{background:#dcf5f0;color:#0b7a69;} .dtag.done{background:var(--green-soft);color:var(--green-ink);} .dtag.dropped{background:#eef1f6;color:var(--faint);} .dtag.over{background:var(--amber-soft);color:var(--amber);}
+  .tl-year{font-size:13px;font-weight:700;color:var(--sub);margin:14px 0 6px;display:flex;gap:8px;align-items:baseline;}
+  .tl-year:first-child{margin-top:0;}
+  .tl-row,.yg-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;min-height:52px;margin-bottom:6px;}
+  .tl-row:hover,.yg-row:hover{border-color:var(--primary);}
+  .tl-date{font-size:12.5px;font-weight:700;color:var(--sub);min-width:44px;flex-shrink:0;}
+  .tl-main,.yg-main{flex:1;min-width:0;}
+  .tl-text,.yg-text{display:block;font-weight:700;font-size:14.5px;line-height:1.45;word-break:break-word;}
+  .tl-sub,.yg-sub{display:block;font-size:12px;color:var(--sub);}
+  .yg-row.done .yg-text{color:var(--sub);} .yg-row.dropped{opacity:.6;} .yg-row.dropped .yg-text{text-decoration:line-through;}
+  .age-line{font-size:12.5px;color:var(--primary-dark);font-weight:600;margin-top:5px;min-height:18px;}
+  .log-item{font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line);word-break:break-word;}
+  .log-item b{color:var(--sub);font-size:12px;margin-right:6px;}
+  .stale{background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:10px;padding:8px 10px;margin-bottom:8px;font-size:13px;color:#7c3a03;}
+  .stale .btn-row{margin-top:6px;gap:6px;}
+  .goal-parent{font-size:13.5px!important;margin-top:8px;color:var(--sub);}
+  /* ホーム:ミッションと今日の夢 */
+  .hero-mission{display:block;width:100%;text-align:left;background:rgba(255,255,255,.12);border:none;border-radius:10px;color:#fff;padding:8px 12px;margin-top:14px;font-size:13px;line-height:1.5;}
+  .hero-mission:hover{background:rgba(255,255,255,.2);}
+  .hero-mission small{display:block;font-size:11px;opacity:.8;font-weight:600;}
+  .dream-card{display:flex;align-items:center;gap:12px;padding:12px 16px;}
+  .dream-card .dc-main{flex:1;min-width:0;background:none;border:none;text-align:left;padding:0;}
+  .dream-card .dc-lb{font-size:11.5px;font-weight:700;color:var(--violet);display:block;}
+  .dream-card .dc-text{font-weight:700;font-size:14.5px;line-height:1.45;display:block;word-break:break-word;}
+  .dream-card .dc-sub{font-size:12px;color:var(--sub);display:block;}
+
   /* history */
   .hist-month{font-size:13px;font-weight:700;color:var(--sub);margin:16px 0 8px;display:flex;align-items:center;gap:8px;}
   .hist-month:first-child{margin-top:0;}
@@ -370,6 +420,16 @@
     .toast{bottom:92px;}
     .modal{padding:20px 18px;}
     .gs{flex:1;justify-content:center;padding:0 6px;min-height:44px;}
+    .seg.four button{font-size:14px;}
+    .mandala{gap:6px;}
+    .mtile{padding:6px 7px;gap:2px;border-radius:10px;}
+    .mt-name{font-size:12px;line-height:1.3;}
+    .mt-theme,.mt-text{font-size:11.5px;line-height:1.35;}
+    .mtile.center .mt-name{font-size:10.5px;}
+    .mtile.center .mt-theme{font-size:11.5px;-webkit-line-clamp:4;}
+    .mtile.dream .mt-text{-webkit-line-clamp:4;flex:none;}
+    .mt-foot{font-size:10.5px;}
+    .life-head .count{margin-left:0;width:100%;}
     #s-write .screen-sub{display:none;}
     #s-write h2.screen-title{font-size:19px;margin-bottom:10px;}
     .carry{padding:10px 12px;margin-bottom:12px;gap:10px;}
@@ -435,7 +495,7 @@
       <div class="sep" role="presentation"></div>
       <button type="button" data-screen="settings"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg>設定・データ</button>
     </nav>
-    <div class="side-foot">試用版 0.2<br>データはこの端末のブラウザ内に保存されます</div>
+    <div class="side-foot">試用版 0.3<br>データはこの端末のブラウザ内に保存されます</div>
   </aside>
 
   <main>
@@ -474,6 +534,16 @@
             <button type="button" class="cta" id="homeCta"></button>
             <button type="button" class="cta2" id="homeCta2"></button>
           </div>
+          <button type="button" class="hero-mission" id="heroMission" hidden><small>自分の未来</small><span id="heroMissionText"></span></button>
+        </div>
+
+        <div class="card dream-card" id="dreamCard" hidden>
+          <button type="button" class="dc-main" id="dreamOpen">
+            <span class="dc-lb" id="dreamLb"></span>
+            <span class="dc-text" id="dreamText"></span>
+            <span class="dc-sub" id="dreamSub"></span>
+          </button>
+          <button type="button" class="icon-btn" id="dreamNext" aria-label="別の夢を見る" title="別の夢を見る"><svg class="ic" aria-hidden="true"><use href="#i-sync"/></svg></button>
         </div>
 
         <div class="card onboard" id="onboard" hidden>
@@ -657,14 +727,50 @@
       <!-- ================= GOALS ================= -->
       <section class="screen" id="s-goals" aria-label="目標">
         <h2 class="screen-title">目標</h2>
-        <p class="screen-sub">週・月それぞれ最大5つ。1つだけでも大丈夫です。</p>
+        <p class="screen-sub">生涯の夢から今日の一歩までを、一本でつなげます。</p>
 
-        <div class="seg" id="goalTabs" role="tablist" aria-label="週と月の切り替え">
-          <button type="button" role="tab" data-gtab="weekly">週の目標</button>
-          <button type="button" role="tab" data-gtab="monthly">月の目標</button>
+        <div class="seg four" id="goalTabs" role="tablist" aria-label="目標の期間の切り替え">
+          <button type="button" role="tab" data-gtab="life">生涯</button>
+          <button type="button" role="tab" data-gtab="year">年</button>
+          <button type="button" role="tab" data-gtab="monthly">月</button>
+          <button type="button" role="tab" data-gtab="weekly">週</button>
         </div>
 
-        <div class="card">
+        <!-- 生涯:ミッション + マンダラ(8分野×8つの夢)/年表 -->
+        <div id="lifePane" hidden>
+          <div class="card">
+            <label class="lb" for="lifeMission">自分の未来(ミッション) <span class="hint">すべての中心に置く一文</span></label>
+            <textarea id="lifeMission" maxlength="200" placeholder="例:学び続け、関わる人の役に立つ" style="min-height:60px;"></textarea>
+          </div>
+          <div class="card">
+            <div class="life-head">
+              <div class="chips" id="lifeView" role="group" aria-label="表示の切り替え">
+                <button type="button" class="chip" data-lview="mandala" aria-pressed="true">マンダラ</button>
+                <button type="button" class="chip" data-lview="timeline" aria-pressed="false">年表</button>
+              </div>
+              <span class="count" id="lifeCount"></span>
+            </div>
+            <div id="lifeBody"></div>
+          </div>
+        </div>
+
+        <!-- 年:年間目標 -->
+        <div id="yearPane" hidden>
+          <div class="card">
+            <div class="period-nav">
+              <button type="button" class="icon-btn tint" id="yearPrev" aria-label="前の年へ"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg></button>
+              <span class="pl" id="yearLabel"></span>
+              <button type="button" class="icon-btn tint" id="yearNext" aria-label="次の年へ"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></button>
+              <span class="rel" id="yearRel"></span>
+              <span class="count" id="yearSummary" style="margin-left:auto;font-size:13px;font-weight:700;color:var(--sub);"></span>
+            </div>
+            <div class="chips" id="yearFilter" role="group" aria-label="状態で絞り込む" style="margin-bottom:12px;"></div>
+            <div id="yearList"></div>
+            <div class="btn-row"><button type="button" class="btn sub" id="yearAdd"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>年間目標を追加</button></div>
+          </div>
+        </div>
+
+        <div class="card" id="periodPane">
           <div class="period-nav">
             <button type="button" class="icon-btn tint" id="goalPrev" aria-label="前の期間へ"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg></button>
             <span class="pl" id="goalPeriod"></span>
@@ -741,8 +847,12 @@
 
         <div class="card">
           <h3><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>その他</h3>
+          <div class="field">
+            <label class="lb" for="birthYm">生まれた年月 <span class="hint">任意。夢の期限に「その時の年齢」を表示します</span></label>
+            <input type="month" id="birthYm" placeholder="1985-04" style="max-width:220px;">
+          </div>
           <div class="btn-row" style="margin-top:0;"><button type="button" class="btn ghost sm" id="guideAgain">はじめのガイドをもう一度表示</button></div>
-          <p class="hint-line">Good 3 More 試用版 0.2</p>
+          <p class="hint-line">Good 3 More 試用版 0.3</p>
         </div>
 
         <div class="card danger-zone">
@@ -771,17 +881,23 @@
 
 <script>
 /* =========================================================
-   Good 3 More — 試用版 0.2 (single file / local storage)
+   Good 3 More — 試用版 0.3 (single file / local storage)
    ・データ保存キーは v1 から変更なし(既存の記録をそのまま読み込みます)
    ・移行は「項目を足すだけ」の非破壊方式
    ========================================================= */
 const STORE_KEY='good3more:v1';
 const SNAP_KEY='good3more:snapshots';
-const SCHEMA_VERSION=2;
+const SCHEMA_VERSION=3;
 const SNAP_AUTO_MAX=12, SNAP_DAILY_MAX=14, SNAP_MANUAL_MAX=6, AUTO_MIN_GAP=10*60*1000;
 const HABIT_MAX=20;
 const WD_JP=['日','月','火','水','木','金','土'];
 const GSTATUS=[{k:'done',sym:'◎',l:'達成'},{k:'mostly',sym:'○',l:'ほぼ'},{k:'partial',sym:'△',l:'一部'},{k:'none',sym:'×',l:'未達'}];
+// 夢・年間目標の状態(長く付き合う目標なので「継続」「中止」も持つ)
+const DSTATUS=[{k:'todo',l:'未着手'},{k:'doing',l:'進行中'},{k:'ongoing',l:'継続'},{k:'done',l:'完了'},{k:'dropped',l:'中止'}];
+const DSTATUS_RANK={doing:0,todo:1,ongoing:2,done:3,dropped:4};
+const LIFE_AREA_IDS=['a1','a2','a3','a4','a5','a6','a7','a8'];
+const LIFE_AREA_NAMES=['経済・モノ・お金','プライベート・家庭','趣味・娯楽','社会・仕事','教養・知識','健康・美容','心・精神','ライフスタイル・習慣'];
+const STALE_WEEKS=3;   // 同じ週の目標がこの週数続いたら「動かない目標」として見直しを促す
 const COACH_MODES={gentle:'やさしく寄り添うコーチ',concrete:'具体的に整えるコーチ',sharp:'鋭く問いかけるコーチ'};
 
 let db=null;
@@ -791,8 +907,10 @@ let activeScreen='home';
 let writeTab='morning';
 let goalTab='weekly';
 let goalCursor={weekly:mondayOf(todayStr()),monthly:monthKey(todayStr())};
+let yearCursor=new Date().getFullYear(), yearFilter='all';
+let lifeView='mandala', lifeArea=null, dreamOffset=0;
 let lastSaved=null, saveTimer=null, dirty=false, saveError=false, externalChange=false;
-let lastFocus=null, modalResolver=null;
+let lastFocus=null, modalResolver=null, modalOnClose=null;
 
 const $=id=>document.getElementById(id);
 const ic=(n,c='')=>`<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -814,7 +932,32 @@ function shortDate(s){const d=parseDate(s);return `${d.getMonth()+1}/${d.getDate
 function dayWord(s){const t=todayStr();if(s===t)return '今日';if(s===addDays(t,-1))return '昨日';if(s===addDays(t,1))return '明日';return humanDate(s);}
 
 /* ---------- store: load / migrate ---------- */
-function freshStore(){const now=new Date().toISOString();return{schema_version:SCHEMA_VERSION,entries:{},habits:[],goals:{weekly:{},monthly:{}},settings:{coach_mode:'gentle',onboarding_dismissed:false,nudge_dismissed:{}},deleted:{entries:{},habits:{},goals:{}},created_at:now,updated_at:now};}
+function freshStore(){const now=new Date().toISOString();return{schema_version:SCHEMA_VERSION,entries:{},habits:[],goals:{weekly:{},monthly:{}},life:normalizeLife(null),year_goals:{},settings:{coach_mode:'gentle',onboarding_dismissed:false,nudge_dismissed:{},birth_ym:''},deleted:{entries:{},habits:{},goals:{},year_goals:{}},created_at:now,updated_at:now};}
+// 生涯の構造: 中心(mission)+ 8分野(a1〜a8)。各分野に「ありたい姿」と8つの夢
+function normalizeDream(d){d=(d&&typeof d==='object')?d:{};return{text:String(d.text||''),note:String(d.note||''),deadline:/^\d{4}-\d{2}-\d{2}$/.test(d.deadline||'')?d.deadline:'',status:DSTATUS.some(s=>s.k===d.status)?d.status:'todo'};}
+function normalizeLife(l){
+  l=(l&&typeof l==='object')?l:{};
+  const m=(l.mission&&typeof l.mission==='object')?l.mission:{};
+  const src=(l.areas&&typeof l.areas==='object')?l.areas:{};
+  const areas={};
+  LIFE_AREA_IDS.forEach((id,i)=>{
+    const a=(src[id]&&typeof src[id]==='object')?src[id]:{};
+    const dreams=(Array.isArray(a.dreams)?a.dreams:[]).map(normalizeDream);
+    while(dreams.length<8)dreams.push(normalizeDream(null));
+    const th=normalizeDream({deadline:a.theme_deadline,status:a.theme_status});
+    areas[id]={id,order:i,name:String(a.name||LIFE_AREA_NAMES[i]),theme:String(a.theme||''),theme_deadline:th.deadline,theme_status:th.status,dreams:dreams.slice(0,8),updated_at:a.updated_at||''};
+  });
+  return{mission:{text:String(m.text||''),updated_at:m.updated_at||''},areas};
+}
+function normalizeYearGoal(g){
+  g=(g&&typeof g==='object')?g:{};
+  const dt=v=>/^\d{4}-\d{2}-\d{2}$/.test(v||'')?v:'';
+  const out={id:String(g.id||''),year:parseInt(g.year)||new Date().getFullYear(),order:Number(g.order)||0,motive:String(g.motive||''),text:String(g.text||''),detail:String(g.detail||''),result:String(g.result||''),
+    area:LIFE_AREA_IDS.includes(g.area)?g.area:'',dream:(Number.isInteger(g.dream)&&g.dream>=0&&g.dream<8)?g.dream:null,start:dt(g.start),end:dt(g.end),
+    status:DSTATUS.some(s=>s.k===g.status)?g.status:'todo',logs:(Array.isArray(g.logs)?g.logs:[]).filter(x=>x&&typeof x==='object'&&x.text).map(x=>({d:String(x.d||''),text:String(x.text)})),
+    created_at:g.created_at||'',updated_at:g.updated_at||''};
+  return out;
+}
 function migrate(s){
   if(typeof s!=='object'||s===null||Array.isArray(s))return freshStore();
   s.entries=(s.entries&&typeof s.entries==='object')?s.entries:{};
@@ -834,8 +977,13 @@ function migrate(s){
   if(typeof s.settings.onboarding_dismissed!=='boolean')s.settings.onboarding_dismissed=false;
   if(!s.settings.nudge_dismissed||typeof s.settings.nudge_dismissed!=='object')s.settings.nudge_dismissed={};
   // 削除の記録(同期のとき、別の端末で消したものが復活しないようにするため)
+  if(typeof s.settings.birth_ym!=='string'||!/^\d{4}-\d{2}$/.test(s.settings.birth_ym))s.settings.birth_ym='';
+  s.life=normalizeLife(s.life);
+  const yg={};
+  Object.entries((s.year_goals&&typeof s.year_goals==='object')?s.year_goals:{}).forEach(([id,g])=>{const n=normalizeYearGoal(Object.assign({},g,{id}));if(n.text.trim())yg[id]=n;});
+  s.year_goals=yg;
   s.deleted=(s.deleted&&typeof s.deleted==='object')?s.deleted:{};
-  ['entries','habits','goals'].forEach(k=>{if(!s.deleted[k]||typeof s.deleted[k]!=='object')s.deleted[k]={};});
+  ['entries','habits','goals','year_goals'].forEach(k=>{if(!s.deleted[k]||typeof s.deleted[k]!=='object')s.deleted[k]={};});
   s.schema_version=SCHEMA_VERSION;
   return s;
 }
@@ -937,15 +1085,15 @@ function updateSaveStatus(){
 }
 
 /* ---------- goals helpers ---------- */
-function normalizeItem(x){
-  if(typeof x==='string')return{text:x,review:'',status:''};
-  if(x&&typeof x==='object')return{text:String(x.text||''),review:String(x.review||''),status:GSTATUS.some(s=>s.k===x.status)?x.status:''};
-  return{text:'',review:'',status:''};
+function normalizeItem(x){   // parent = つながる年間目標のID(任意)
+  if(typeof x==='string')return{text:x,review:'',status:'',parent:''};
+  if(x&&typeof x==='object')return{text:String(x.text||''),review:String(x.review||''),status:GSTATUS.some(s=>s.k===x.status)?x.status:'',parent:String(x.parent||'')};
+  return{text:'',review:'',status:'',parent:''};
 }
 function normalizeGoal(g){
   g=(g&&typeof g==='object')?g:{};
   const items=(Array.isArray(g.items)?g.items:[]).map(normalizeItem);
-  while(items.length<5)items.push({text:'',review:'',status:''});
+  while(items.length<5)items.push({text:'',review:'',status:'',parent:''});
   const out={items:items.slice(0,5),review:String(g.review||''),period_key:g.period_key,updated_at:g.updated_at};
   if(g.has_saved)out.has_saved=true;
   return out;
@@ -1034,7 +1182,13 @@ function toggleLink(type,key,index){
   renderWrite();renderHome();
   if(!same&&!hasGoal)$('f-top-goal').focus();
 }
-function openGoals(type,key){flushSave();goalTab=type;goalCursor[type]=key;switchScreen('goals');render();}
+function openGoals(type,key){
+  flushSave();goalTab=type;
+  if(type==='year'){if(key)yearCursor=parseInt(key)||yearCursor;}
+  else if(type==='life'){lifeArea=null;lifeView='mandala';}
+  else goalCursor[type]=key;
+  switchScreen('goals');render();
+}
 // 週初め・週末・月初め・月末に、やることを1つだけ声かけする
 function goalNudge(){
   const t=todayStr();if(selectedDate!==t)return null;
@@ -1049,6 +1203,15 @@ function goalNudge(){
   if(dom<=3&&unrated('monthly',prevMk))list.push({id:'review:monthly:'+prevMk,text:'先月の目標のふりかえりがまだです。',btn:'ふりかえる',type:'monthly',key:prevMk});
   if(!set('monthly',mk).length)list.push({id:'set:monthly:'+mk,text:'今月の目標を決めると、週の目標が立てやすくなります。',btn:'今月の目標を決める',type:'monthly',key:mk});
   if(last-dom<=2&&unrated('monthly',mk))list.push({id:'review:monthly:'+mk,text:'月末です。今月の目標に達成度を付けて、ふりかえりましょう。',btn:'ふりかえる',type:'monthly',key:mk});
+  // 動かない目標:同じ週の目標が続いていたら、小さくするか外すかを促す
+  goalItemsOf('weekly',wk).forEach((it,i)=>{
+    if(!hasText(it.text)||it.status==='done')return;
+    const n=weeklyStreak(it.text,wk);
+    if(n>=STALE_WEEKS)list.push({id:`stale:${wk}:${i}`,text:`「${it.text}」が${n}週続いています。小さく書き直すか、いったん外すのも手です。`,btn:'見直す',type:'weekly',key:wk});
+  });
+  // 年間目標は半月に一度(1日・16日ごろ)進み具合を確認する
+  const y=td.getFullYear();
+  if(((dom>=1&&dom<=3)||(dom>=16&&dom<=18))&&yearGoalsOf(y).some(g=>g.status==='todo'||g.status==='doing'))list.push({id:`review:year:${mk}:${dom<=3?1:2}`,text:'半月に一度の確認です。年間目標の進み具合を見て、状態やメモを更新しましょう。',btn:'確認する',type:'year',key:String(y)});
   return list.find(n=>!db.settings.nudge_dismissed[n.id])||null;
 }
 
@@ -1151,6 +1314,9 @@ function renderHome(){
   $('homeGoal').textContent=e&&hasText(e.morning.top_goal)?e.morning.top_goal:'まだ決めていません';
   const ll=e&&hasText(e.morning.top_goal)?linkLabel(linkOf(e)):'';
   $('homeLink').hidden=!ll;$('homeLink').textContent=ll?'↳ '+ll+' につながる一歩':'';
+  const ms=db.life.mission.text.trim();
+  $('heroMission').hidden=!ms;$('heroMissionText').textContent=ms;
+  renderDreamCard();
   $('homeStep').textContent=e&&hasText(e.morning.first_step)?'小さな一歩:'+e.morning.first_step:(mDone?'':'朝を逃しても大丈夫。夜にひとこと残せば、その日の記録になります。');
   const tab=defaultWriteTab();
   const lbl=(t,done)=>t==='morning'?(done?'朝の入力を見直す':'朝の入力を書く'):(done?'夜の振り返りを見直す':'夜の振り返りを書く');
@@ -1444,6 +1610,9 @@ function goalPeriodInfo(type,key){
 }
 function renderGoals(){
   document.querySelectorAll('#goalTabs button').forEach(b=>{const on=b.dataset.gtab===goalTab;b.classList.toggle('on',on);b.setAttribute('aria-selected',String(on));});
+  $('lifePane').hidden=goalTab!=='life';$('yearPane').hidden=goalTab!=='year';$('periodPane').hidden=!(goalTab==='weekly'||goalTab==='monthly');
+  if(goalTab==='life'){renderLife();return;}
+  if(goalTab==='year'){renderYear();return;}
   const key=goalCursor[goalTab],info=goalPeriodInfo(goalTab,key);
   $('goalPeriod').textContent=info.label;
   $('goalRel').textContent=info.rel;$('goalRel').hidden=!info.rel;
@@ -1466,14 +1635,17 @@ function renderGoals(){
   carryBtn.hidden=!(pending.length&&g.items.every(it=>!hasText(it.text)));
   if(!carryBtn.hidden)carryBtn.innerHTML=`${ic('arrow','sm')}前の${goalTab==='weekly'?'週':'月'}の未達成 ${pending.length}件を引き継ぐ`;
   const prog=g.items.map((_,i)=>goalProgress(goalTab,key,i));
+  const streak=g.items.map(it=>(goalTab==='weekly'&&hasText(it.text)&&it.status!=='done')?weeklyStreak(it.text,key):0);
   $('goalFields').innerHTML=g.items.map((it,i)=>`<div class="goal-block${hasText(it.text)?' has-text':''}" data-gi="${i}">
       <div class="goal-num" aria-hidden="true">${i+1}</div>
       <div class="goal-body">
         <input type="text" class="goal-text" data-gf="text" maxlength="60" value="${esc(it.text)}" placeholder="目標 ${i+1}${i===0?'(例:提案書を完成させる)':''}" aria-label="目標${i+1}" enterkeyhint="done">
         <div class="goal-extra">
+          ${streak[i]>=STALE_WEEKS?`<div class="stale">${streak[i]}週続いています。小さく書き直すか、今回は外すのも手です。<div class="btn-row"><button type="button" class="btn sub sm" data-stale="shrink">小さく書き直す</button><button type="button" class="btn ghost sm" data-stale="drop">今回は外す</button></div></div>`:''}
           <div class="gp-meta" style="margin-bottom:8px;">${goalTab==='weekly'?weekPipsHTML(key,prog[i]):''}<span>${progressMeta(prog[i])}</span></div>
           <div class="gstatus" role="group" aria-label="目標${i+1}の達成度">${GSTATUS.map(s=>`<button type="button" class="gs gs-${s.k}" data-gstatus="${s.k}" aria-pressed="${it.status===s.k}"><span class="gsym" aria-hidden="true">${s.sym}</span>${s.l}</button>`).join('')}</div>
           <input type="text" class="goal-review" data-gf="review" maxlength="120" value="${esc(it.review)}" placeholder="振り返りメモ(任意)" aria-label="目標${i+1}の振り返りメモ" enterkeyhint="done">
+          ${parentOptionsHTML(goalTab,key,it.parent)}
         </div>
       </div></div>`).join('');
   $('goalReview').value=g.review;
@@ -1491,6 +1663,262 @@ function moveGoal(n){
 }
 
 /* ---- history ---- */
+/* =========================================================
+   生涯(ミッション・マンダラ・年表)と 年間目標
+   夢 → 年 → 月 → 週 → 今日 を一本でつなぐための上位層
+   ========================================================= */
+function touchArea(a){a.updated_at=new Date().toISOString();}
+function lifeAreas(){return LIFE_AREA_IDS.map(id=>db.life.areas[id]);}
+function dstatusLabel(k){const s=DSTATUS.find(x=>x.k===k);return s?s.l:'未着手';}
+function ageAt(ds){
+  const b=db.settings.birth_ym;if(!b||!ds)return '';
+  const[by,bm]=b.split('-').map(Number),d=parseDate(ds);
+  const months=(d.getFullYear()-by)*12+(d.getMonth()+1-bm);
+  if(months<0)return '';
+  return `${Math.floor(months/12)}歳${months%12?months%12+'か月':''}`;
+}
+function deadlineInfo(ds,status){   // 期限の表示用:日付・その時の年齢・残り日数・期限超過
+  if(!ds)return{date:'',age:'',left:null,over:false,text:''};
+  const left=daysBetween(todayStr(),ds),age=ageAt(ds),d=parseDate(ds);
+  const over=left<0&&(status==='todo'||status==='doing');
+  const date=`${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`;
+  const rest=left>=0?`あと${left}日`:(over?'期限を過ぎています':'');
+  return{date,age,left,over,text:[date,age,rest].filter(Boolean).join('・')};
+}
+function allDreams(){const list=[];lifeAreas().forEach(a=>a.dreams.forEach((d,i)=>{if(hasText(d.text))list.push({area:a,i,d});}));return list;}
+
+function renderLife(){
+  const m=$('lifeMission');if(document.activeElement!==m)m.value=db.life.mission.text;
+  document.querySelectorAll('#lifeView .chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.lview===lifeView)));
+  const dreams=allDreams();
+  $('lifeCount').textContent=dreams.length?`夢 ${dreams.length}・進行中 ${dreams.filter(x=>x.d.status==='doing').length}・完了 ${dreams.filter(x=>x.d.status==='done').length}`:'';
+  $('lifeBody').innerHTML=lifeView==='timeline'?lifeTimelineHTML():(lifeArea&&db.life.areas[lifeArea]?lifeAreaHTML(db.life.areas[lifeArea]):lifeOverviewHTML());
+}
+function lifeOverviewHTML(){
+  const tiles=lifeAreas().map(a=>`<button type="button" class="mtile" data-area="${a.id}" aria-label="${esc(a.name)}を開く">
+      <span class="mt-name">${esc(a.name)}</span>
+      <span class="mt-theme${hasText(a.theme)?'':' mt-empty'}">${esc(hasText(a.theme)?a.theme:'ありたい姿を書く')}</span>
+      <span class="mt-dots" aria-hidden="true">${a.dreams.map(d=>`<i class="${d.status}${hasText(d.text)?' has':''}"></i>`).join('')}</span>
+    </button>`);
+  tiles.splice(4,0,`<button type="button" class="mtile center" data-center="mission" aria-label="自分の未来を編集"><span class="mt-name">自分の未来</span><span class="mt-theme">${esc(hasText(db.life.mission.text)?db.life.mission.text:'ミッションを書く')}</span></button>`);
+  return `<div class="mandala">${tiles.join('')}</div><p class="hint-line">分野をタップすると、その分野の8つの夢が開きます。</p>`;
+}
+function lifeAreaHTML(a){
+  const tiles=a.dreams.map((d,i)=>{
+    const info=deadlineInfo(d.deadline,d.status),has=hasText(d.text);
+    const foot=info.over?'期限超過':(d.deadline?info.date:(d.status==='todo'?'日付を入れる':dstatusLabel(d.status)));
+    return `<button type="button" class="mtile dream ${d.status}" data-dream="${i}" aria-label="夢${i+1}を編集">
+      <span class="mt-text${has?'':' mt-empty'}">${esc(has?d.text:'＋ 夢を書く')}</span>
+      ${has?`<span class="mt-foot${info.over?' over':''}">${esc(foot)}</span>`:''}
+    </button>`;
+  });
+  tiles.splice(4,0,`<button type="button" class="mtile center" data-center="theme" aria-label="${esc(a.name)}のありたい姿を編集"><span class="mt-name">${esc(a.name)}</span><span class="mt-theme">${esc(hasText(a.theme)?a.theme:'ありたい姿を書く')}</span></button>`);
+  return `<div class="life-back"><button type="button" class="pill-btn" id="lifeBack">${ic('left','sm')}全体に戻る</button><b>${esc(a.name)}</b></div><div class="mandala">${tiles.join('')}</div><p class="hint-line">マスをタップすると、夢・期限・状態を編集できます。</p>`;
+}
+function lifeTimelineHTML(){
+  const live=allDreams().filter(x=>x.d.status!=='dropped');
+  const dated=live.filter(x=>x.d.deadline).sort((p,q)=>p.d.deadline<q.d.deadline?-1:p.d.deadline>q.d.deadline?1:0);
+  const undated=live.filter(x=>!x.d.deadline&&x.d.status!=='done');
+  if(!live.length)return `<div class="empty-state">${ic('cal')}<br>夢に日付を入れると、ここに年表ができます。</div>`;
+  const by=db.settings.birth_ym?parseInt(db.settings.birth_ym.slice(0,4)):0;
+  const row=x=>{
+    const info=deadlineInfo(x.d.deadline,x.d.status),d=x.d.deadline?parseDate(x.d.deadline):null;
+    return `<button type="button" class="tl-row" data-area="${x.area.id}" data-dream="${x.i}">${d?`<span class="tl-date">${d.getMonth()+1}/${d.getDate()}</span>`:''}<span class="tl-main"><span class="tl-text">${esc(x.d.text)}</span><span class="tl-sub">${esc([x.area.name,info.age,(info.left!=null&&info.left>=0)?'あと'+info.left+'日':''].filter(Boolean).join('・'))}</span></span><span class="dtag ${info.over?'over':x.d.status}">${info.over?'期限超過':dstatusLabel(x.d.status)}</span></button>`;
+  };
+  let html='',cur='';
+  dated.forEach(x=>{const y=x.d.deadline.slice(0,4);if(y!==cur){cur=y;html+=`<div class="tl-year">${y}年${by&&parseInt(y)>=by?`<span class="dtag">${parseInt(y)-by}歳になる年</span>`:''}</div>`;}html+=row(x);});
+  if(!dated.length)html+='<p class="info-line">日付の入った夢はまだありません。夢に日付を入れると、ここに年ごとに並びます。</p>';
+  if(undated.length)html+=`<details class="more" style="margin:14px 0 0;"><summary>${ic('cal')}日付のない夢 ${undated.length}件${ic('down','chev')}</summary><div class="inner">${undated.map(row).join('')}</div></details>`;
+  return html;
+}
+function openDream(areaId,i){
+  const a=db.life.areas[areaId];if(!a)return;const d=a.dreams[i];if(!d)return;
+  openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
+    <h3>${esc(a.name)}・夢${i+1}</h3><p class="msub">日付を入れると、年表と「その時の年齢」に反映されます。</p>
+    <div class="field"><label class="lb" for="dmText">夢・目標</label><textarea id="dmText" maxlength="140" placeholder="例:フルマラソンを完走する" style="min-height:64px;">${esc(d.text)}</textarea></div>
+    <div class="field"><label class="lb" for="dmNote">説明・アクション <span class="hint">任意</span></label><textarea id="dmNote" maxlength="300" style="min-height:56px;">${esc(d.note)}</textarea></div>
+    <div class="field"><label class="lb" for="dmDeadline">いつまでに <span class="hint">任意</span></label><input type="date" id="dmDeadline" value="${d.deadline}" style="max-width:220px;"><div class="age-line" id="dmAge"></div></div>
+    <div class="field"><span class="lb" id="dmStLb">状態</span><div class="chips" id="dmStatus" role="group" aria-labelledby="dmStLb">${DSTATUS.map(s=>`<button type="button" class="chip" data-st="${s.k}" aria-pressed="${d.status===s.k}">${s.l}</button>`).join('')}</div></div>
+    <div class="autosave-note"><svg class="ic sm" aria-hidden="true"><use href="#i-shield"/></svg>入力すると自動で保存されます</div>
+    <div class="btn-row end"><button type="button" class="btn sub sm" id="dmToYear">${ic('arrow','sm')}今年の目標にする</button><button type="button" class="btn" onclick="closeModal()">閉じる</button></div>`,'夢を編集',hasText(d.text)?null:'#dmText');
+  const upd=()=>{touchArea(a);scheduleSave();};
+  const age=()=>{const info=deadlineInfo(d.deadline,d.status);$('dmAge').textContent=info.text;};age();
+  $('dmText').addEventListener('input',e=>{d.text=e.target.value;upd();});
+  $('dmNote').addEventListener('input',e=>{d.note=e.target.value;upd();});
+  $('dmDeadline').addEventListener('input',e=>{d.deadline=/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)?e.target.value:'';upd();age();});
+  $('dmStatus').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;d.status=c.dataset.st;$('dmStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===d.status)));upd();age();});
+  $('dmToYear').onclick=()=>{
+    if(!hasText(d.text)){toast('先に夢を書いてください');return;}
+    flushSave();const id=addYearGoalFromDream(a,i);
+    modalOnClose=null;closeModal();goalTab='year';yearCursor=new Date().getFullYear();yearFilter='all';switchScreen('goals');render();openYearGoal(id);
+  };
+  modalOnClose=()=>{flushSave();render();};
+}
+function openAreaEdit(areaId){
+  const a=db.life.areas[areaId];if(!a)return;
+  openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
+    <h3>分野とありたい姿</h3><p class="msub">この分野で、最終的にどうありたいかを一文で。</p>
+    <div class="field"><label class="lb" for="arName">分野名</label><input type="text" id="arName" maxlength="20" value="${esc(a.name)}"></div>
+    <div class="field"><label class="lb" for="arTheme">ありたい姿</label><textarea id="arTheme" maxlength="160" style="min-height:64px;" placeholder="例:心身ともに健康で、やりたいことに挑戦できている">${esc(a.theme)}</textarea></div>
+    <div class="field"><label class="lb" for="arDeadline">いつまでに <span class="hint">任意</span></label><input type="date" id="arDeadline" value="${a.theme_deadline}" style="max-width:220px;"><div class="age-line" id="arAge"></div></div>
+    <div class="field"><span class="lb" id="arStLb">状態</span><div class="chips" id="arStatus" role="group" aria-labelledby="arStLb">${DSTATUS.map(s=>`<button type="button" class="chip" data-st="${s.k}" aria-pressed="${a.theme_status===s.k}">${s.l}</button>`).join('')}</div></div>
+    <div class="btn-row end"><button type="button" class="btn" onclick="closeModal()">閉じる</button></div>`,'分野を編集',hasText(a.theme)?null:'#arTheme');
+  const upd=()=>{touchArea(a);scheduleSave();};
+  const age=()=>{$('arAge').textContent=deadlineInfo(a.theme_deadline,a.theme_status).text;};age();
+  $('arName').addEventListener('input',e=>{a.name=e.target.value.trim()||LIFE_AREA_NAMES[a.order];upd();});
+  $('arTheme').addEventListener('input',e=>{a.theme=e.target.value;upd();});
+  $('arDeadline').addEventListener('input',e=>{a.theme_deadline=/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)?e.target.value:'';upd();age();});
+  $('arStatus').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;a.theme_status=c.dataset.st;$('arStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===a.theme_status)));upd();age();});
+  modalOnClose=()=>{flushSave();render();};
+}
+
+/* ---- 今日の夢(ホーム):毎日1つ、夢を目に入れる ---- */
+function renderDreamCard(){
+  const c=allDreams().filter(x=>x.d.status==='todo'||x.d.status==='doing'||x.d.status==='ongoing'),card=$('dreamCard');
+  card.hidden=!c.length;if(!c.length)return;
+  const t=parseDate(todayStr()),doy=Math.round((t-new Date(t.getFullYear(),0,1,12))/86400000);
+  const x=c[(doy+dreamOffset)%c.length],info=deadlineInfo(x.d.deadline,x.d.status);
+  $('dreamLb').textContent=`今日の夢・${x.area.name}`;
+  $('dreamText').textContent=x.d.text;
+  $('dreamSub').textContent=info.text||dstatusLabel(x.d.status);
+  $('dreamOpen').onclick=()=>openDream(x.area.id,x.i);
+  $('dreamNext').onclick=()=>{dreamOffset++;renderDreamCard();};
+}
+
+/* ---- 年間目標 ---- */
+function yearGoalsOf(y){return Object.values(db.year_goals).filter(g=>g.year===y).sort((p,q)=>(DSTATUS_RANK[p.status]-DSTATUS_RANK[q.status])||(p.order-q.order));}
+function yearGoalRollup(id){   // この年間目標につながる月・週の目標と、取り組んだ日数
+  let items=0,done=0,worked=0;
+  ['weekly','monthly'].forEach(t=>{for(const[k,g]of Object.entries(db.goals[t])){normalizeGoal(g).items.forEach((it,i)=>{if(it.parent===id&&hasText(it.text)){items++;if(it.status==='done')done++;worked+=goalProgress(t,k,i).worked;}});}});
+  return{items,done,worked};
+}
+function addYearGoalFromDream(a,i){
+  const d=a.dreams[i],y=new Date().getFullYear(),now=new Date().toISOString();
+  const ex=Object.values(db.year_goals).find(g=>g.year===y&&g.area===a.id&&g.dream===i);
+  if(ex)return ex.id;
+  const yearEnd=`${y}-12-31`,end=(d.deadline&&d.deadline>=todayStr()&&d.deadline<yearEnd)?d.deadline:yearEnd;
+  const id=uid('yg'),order=Object.values(db.year_goals).reduce((m,g)=>Math.max(m,g.order),0)+1;
+  db.year_goals[id]=normalizeYearGoal({id,year:y,order,text:d.text.slice(0,100),detail:d.note,area:a.id,dream:i,start:todayStr(),end,status:'doing',created_at:now,updated_at:now});
+  if(d.status==='todo'){d.status='doing';touchArea(a);}
+  saveNow(true);
+  return id;
+}
+function renderYear(){
+  const now=new Date().getFullYear();
+  $('yearLabel').textContent=`${yearCursor}年`;
+  const rel=yearCursor===now?'今年':yearCursor===now-1?'昨年':yearCursor===now+1?'来年':'';
+  $('yearRel').textContent=rel;$('yearRel').hidden=!rel;
+  $('yearNext').disabled=yearCursor>=now+1;
+  const all=yearGoalsOf(yearCursor),counts={all:all.length};
+  DSTATUS.forEach(s=>{counts[s.k]=all.filter(g=>g.status===s.k).length;});
+  if(yearFilter!=='all'&&!counts[yearFilter])yearFilter='all';
+  $('yearSummary').textContent=all.length?`完了 ${counts.done} / ${all.length}`:'';
+  $('yearFilter').innerHTML=all.length?[{k:'all',l:'すべて'}].concat(DSTATUS).filter(s=>s.k==='all'||counts[s.k]).map(s=>`<button type="button" class="chip" data-yf="${s.k}" aria-pressed="${yearFilter===s.k}">${s.l} ${counts[s.k]}</button>`).join(''):'';
+  const list=all.filter(g=>yearFilter==='all'||g.status===yearFilter);
+  $('yearList').innerHTML=list.length?list.map(g=>{
+    const a=g.area?db.life.areas[g.area]:null,info=deadlineInfo(g.end,g.status),r=yearGoalRollup(g.id),e=g.end?parseDate(g.end):null;
+    const sub=[a?a.name:'',e?`〜${e.getMonth()+1}/${e.getDate()}`+(info.over?'':(info.left>=0?`(あと${info.left}日)`:'')):'',r.items?`月・週の目標 ${r.items}件`:'',r.worked?`取り組み${r.worked}日`:''].filter(Boolean).join('・');
+    return `<button type="button" class="yg-row ${g.status}" data-yg="${g.id}"><span class="yg-main"><span class="yg-text">${esc(g.text)}</span><span class="yg-sub">${esc(sub)}</span></span><span class="dtag ${info.over?'over':g.status}">${info.over?'期限超過':dstatusLabel(g.status)}</span></button>`;
+  }).join(''):`<div class="empty-state">${ic('target')}<br>${yearCursor}年の目標はまだありません。<br>「生涯」の夢から「今年の目標にする」で作ることもできます。</div>`;
+}
+function openYearGoal(id){
+  const isNew=!id,nowY=new Date().getFullYear();
+  const g=isNew?normalizeYearGoal({year:yearCursor,start:yearCursor===nowY?todayStr():`${yearCursor}-01-01`,end:`${yearCursor}-12-31`,status:'todo'}):db.year_goals[id];
+  if(!g)return;
+  let st=g.status;
+  const areaOpts='<option value="">(分野なし)</option>'+lifeAreas().map(a=>`<option value="${a.id}"${g.area===a.id?' selected':''}>${esc(a.name)}</option>`).join('');
+  const dreamOpts=aid=>{const a=aid?db.life.areas[aid]:null;return '<option value="">(つなげない)</option>'+(a?a.dreams.map((d,i)=>hasText(d.text)?`<option value="${i}"${(g.dream===i&&g.area===aid)?' selected':''}>${i+1}. ${esc(d.text.slice(0,40))}</option>`:'').join(''):'');};
+  const logsHTML=()=>g.logs.length?g.logs.slice().reverse().map(l=>`<div class="log-item"><b>${esc(l.d.slice(5).replace('-','/'))}</b>${esc(l.text)}</div>`).join(''):'<div class="info-line">まだメモはありません。</div>';
+  openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
+    <h3>${isNew?'年間目標を追加':'年間目標'}</h3><p class="msub">「なぜやるのか」から書くと、続きやすくなります。</p>
+    <div class="field"><label class="lb" for="ygText">目標</label><input type="text" id="ygText" maxlength="100" value="${esc(g.text)}" placeholder="例:体重を3kg落として維持する"></div>
+    <div class="field"><label class="lb" for="ygMotive">動機となる事実 <span class="hint">なぜやるのか</span></label><textarea id="ygMotive" maxlength="400" style="min-height:56px;" placeholder="例:健康診断の数値が気になりはじめた">${esc(g.motive)}</textarea></div>
+    <div class="field"><label class="lb" for="ygDetail">目標の解説 <span class="hint">やること・進め方</span></label><textarea id="ygDetail" maxlength="1500" style="min-height:76px;">${esc(g.detail)}</textarea></div>
+    <div class="row"><div class="field"><label class="lb" for="ygArea">分野</label><select id="ygArea">${areaOpts}</select></div>
+      <div class="field"><label class="lb" for="ygDream">つながる夢 <span class="hint">任意</span></label><select id="ygDream">${dreamOpts(g.area)}</select></div></div>
+    <div class="row"><div class="field"><label class="lb" for="ygStart">開始日</label><input type="date" id="ygStart" value="${g.start}"></div><div class="field"><label class="lb" for="ygEnd">終了日</label><input type="date" id="ygEnd" value="${g.end}"></div></div>
+    <div class="field"><span class="lb" id="ygStLb">状態</span><div class="chips" id="ygStatus" role="group" aria-labelledby="ygStLb">${DSTATUS.map(s=>`<button type="button" class="chip" data-st="${s.k}" aria-pressed="${st===s.k}">${s.l}</button>`).join('')}</div></div>
+    ${isNew?'':`<div class="field"><label class="lb" for="ygResult">結果 <span class="hint">終わったときに</span></label><textarea id="ygResult" maxlength="800" style="min-height:56px;">${esc(g.result)}</textarea></div>
+    <div class="field"><label class="lb" for="ygLog">進み具合のメモ <span class="hint">半月に一度が目安</span></label><div id="ygLogs">${logsHTML()}</div>
+      <div class="inline" style="margin-top:6px;"><input type="text" id="ygLog" maxlength="200" placeholder="例:本を1冊読了。次は実践する" enterkeyhint="done"><button type="button" class="btn sub sm" id="ygLogAdd" style="flex:none;">メモを追加</button></div></div>`}
+    <div class="btn-row end">${isNew?'':`<button type="button" class="btn danger sm" id="ygDelete" style="margin-right:auto;">${ic('trash','sm')}削除</button>`}<button type="button" class="btn ghost" onclick="closeModal()">キャンセル</button><button type="button" class="btn" id="ygSave">${isNew?'追加する':'保存する'}</button></div>`,'年間目標',isNew?'#ygText':null);
+  $('ygArea').onchange=e=>{$('ygDream').innerHTML=dreamOpts(e.target.value);$('ygDream').value='';};
+  $('ygStatus').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;st=c.dataset.st;$('ygStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===st)));});
+  if(!isNew){
+    const addLog=()=>{const v=$('ygLog').value.trim();if(!v)return;g.logs.push({d:todayStr(),text:v.slice(0,200)});g.updated_at=new Date().toISOString();saveNow(true);$('ygLogs').innerHTML=logsHTML();$('ygLog').value='';};
+    $('ygLogAdd').onclick=addLog;
+    $('ygLog').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();addLog();}});
+    $('ygDelete').onclick=async()=>{
+      const ok=await confirmDialog({title:`「${g.text}」を削除しますか?`,body:'削除前の状態は自動で控えるので、「以前の状態に戻す」から復元できます。',ok:'削除する',danger:true});
+      if(!ok){render();return;}
+      snapshotCurrent('manual');delete db.year_goals[g.id];db.deleted.year_goals[g.id]=new Date().toISOString();saveNow(true);render();toast('削除しました');
+    };
+  }
+  $('ygSave').onclick=()=>{
+    const text=$('ygText').value.trim();
+    if(!text){toast('目標を入力してください');$('ygText').focus();return;}
+    const now=new Date().toISOString(),dt=v=>/^\d{4}-\d{2}-\d{2}$/.test(v)?v:'';
+    const start=dt($('ygStart').value),end=dt($('ygEnd').value);
+    if(start&&end&&end<start){toast('終了日は開始日より後にしてください');return;}
+    const dv=$('ygDream').value;
+    Object.assign(g,{text:text.slice(0,100),motive:$('ygMotive').value,detail:$('ygDetail').value,area:$('ygArea').value,dream:dv===''?null:parseInt(dv),start,end,status:st,updated_at:now});
+    if(!isNew)g.result=$('ygResult').value;
+    if(isNew){g.id=uid('yg');g.order=Object.values(db.year_goals).reduce((m,x)=>Math.max(m,x.order),0)+1;g.created_at=now;db.year_goals[g.id]=g;}
+    delete db.deleted.year_goals[g.id];
+    saveNow(true);modalOnClose=null;closeModal();render();toast(isNew?'年間目標を追加しました':'保存しました');
+  };
+  modalOnClose=()=>{render();};
+}
+function parentOptionsHTML(type,key,cur){   // 月・週の目標を、年間目標につなげるための選択肢
+  const y=parseInt((type==='weekly'?addDays(key,3):key+'-01').slice(0,4));
+  const gs=yearGoalsOf(y).filter(g=>g.id===cur||(g.status!=='done'&&g.status!=='dropped'));
+  if(!gs.length)return '';
+  return `<select class="goal-parent" data-gf="parent" aria-label="つながる年間目標"><option value="">年間目標とつなげる(任意)</option>${gs.map(g=>`<option value="${g.id}"${g.id===cur?' selected':''}>${esc(g.text.slice(0,36))}</option>`).join('')}</select>`;
+}
+// 同じ目標が何週続いているか(記録のある週をさかのぼって数える)
+function weeklyStreak(text,key){
+  const norm=s=>String(s||'').trim().replace(/\s+/g,' ');
+  const tx=norm(text);if(!tx)return 0;
+  let n=1;
+  const keys=Object.keys(db.goals.weekly).filter(k=>k<key).sort().reverse();
+  for(const k of keys){if(normalizeGoal(db.goals.weekly[k]).items.some(it=>norm(it.text)===tx))n++;else break;}
+  return n;
+}
+
+/* ---- 追加の取り込み(生涯目標・年間目標など)。いまの記録は消さず、空いている欄だけを埋める ---- */
+async function importPartial(j){
+  const L=(j.life&&typeof j.life==='object')?j.life:{},areasIn=Array.isArray(L.areas)?L.areas:[];
+  const norm=s=>String(s||'').trim();
+  const plan={mission:false,themes:0,dreams:0,goals:0,birth:false};
+  const mission=norm(L.mission);
+  if(mission&&!hasText(db.life.mission.text))plan.mission=true;
+  areasIn.forEach(ai=>{const a=ai&&db.life.areas[ai.id];if(!a)return;if(hasText(ai.theme)&&!hasText(a.theme))plan.themes++;(Array.isArray(ai.dreams)?ai.dreams:[]).slice(0,8).forEach((d,i)=>{if(d&&hasText(d.text)&&!hasText(a.dreams[i].text))plan.dreams++;});});
+  const goalsIn=(Array.isArray(j.year_goals)?j.year_goals:[]).filter(g=>g&&hasText(g.text));
+  const exists=g=>Object.values(db.year_goals).some(x=>x.year===(parseInt(g.year)||0)&&norm(x.text)===norm(g.text));
+  const newGoals=goalsIn.filter(g=>!exists(g));plan.goals=newGoals.length;
+  const birth=(j.settings&&/^\d{4}-\d{2}$/.test(j.settings.birth_ym||''))?j.settings.birth_ym:'';
+  if(birth&&!db.settings.birth_ym)plan.birth=true;
+  if(!plan.mission&&!plan.themes&&!plan.dreams&&!plan.goals&&!plan.birth){toast('新しく取り込める項目はありませんでした(取り込み済みです)');return;}
+  const ok=await confirmDialog({title:'この内容を追加で取り込みますか?',body:`${plan.mission?'・自分の未来(ミッション)\n':''}・分野のありたい姿 ${plan.themes}件\n・夢 ${plan.dreams}件\n・年間目標 ${plan.goals}件${plan.birth?'\n・生まれた年月(年齢の表示用)':''}\n\nいまの記録は消えません。すでに入力済みの欄は上書きしません。`,ok:'取り込む'});
+  if(!ok)return;
+  flushSave();snapshotCurrent('manual');
+  const now=new Date().toISOString();
+  if(plan.mission){db.life.mission={text:mission.slice(0,200),updated_at:now};}
+  areasIn.forEach(ai=>{
+    const a=ai&&db.life.areas[ai.id];if(!a)return;let ch=false;
+    if(hasText(ai.name)&&a.name===LIFE_AREA_NAMES[a.order]&&norm(ai.name)!==a.name){a.name=norm(ai.name).slice(0,20);ch=true;}
+    if(hasText(ai.theme)&&!hasText(a.theme)){const th=normalizeDream({deadline:ai.theme_deadline,status:ai.theme_status});a.theme=norm(ai.theme);a.theme_deadline=th.deadline;a.theme_status=th.status;ch=true;}
+    (Array.isArray(ai.dreams)?ai.dreams:[]).slice(0,8).forEach((d,i)=>{if(d&&hasText(d.text)&&!hasText(a.dreams[i].text)){a.dreams[i]=normalizeDream(d);ch=true;}});
+    if(ch)a.updated_at=now;
+  });
+  let order=Object.values(db.year_goals).reduce((m,g)=>Math.max(m,g.order),0);
+  newGoals.forEach(g=>{const id=uid('yg');db.year_goals[id]=normalizeYearGoal(Object.assign({},g,{id,order:++order,created_at:now,updated_at:now}));});
+  if(plan.birth){db.settings.birth_ym=birth;touchSettings();}
+  saveNow(true);
+  goalTab='life';lifeArea=null;lifeView='mandala';switchScreen('goals');render();
+  toast(`取り込みました(夢 ${plan.dreams}件・年間目標 ${plan.goals}件)`);
+}
+
 function renderWeekSummary(){
   const t=todayStr(),mon=mondayOf(t),days=daysBetween(mon,t)+1;
   let wrote=0,good=0,ach=0,rated=0;
@@ -1546,6 +1974,7 @@ function renderSettings(){
   $('infoSaved').textContent=lastSaved?lastSaved.toLocaleString('ja-JP'):'—';
   $('delTarget').textContent=`${humanDate(selectedDate)}・${dayWord(selectedDate)}`;
   $('deleteDayBtn').disabled=!db.entries[selectedDate];
+  if(document.activeElement!==$('birthYm'))$('birthYm').value=db.settings.birth_ym||'';
   $('infoWhere').textContent=cloud.user?`この端末 + クラウド(${cloud.user.email||'ログイン中'})`:'この端末のブラウザ内(他の端末とは共有されません)';
   renderCloud();
   renderSnapshots();
@@ -1589,8 +2018,10 @@ function importJSON(ev){
   const r=new FileReader();
   r.onload=async()=>{
     ev.target.value='';
-    let parsed;
-    try{const j=JSON.parse(r.result);if(!j||typeof j!=='object'||!j.entries)throw new Error('format');parsed=migrate(j);}
+    let parsed,raw=null;
+    try{raw=JSON.parse(r.result);}catch(e){raw=null;}
+    if(raw&&typeof raw==='object'&&raw.kind==='good3more-import'){await importPartial(raw);return;}   // 追加の取り込み(置き換えない)
+    try{const j=raw;if(!j||typeof j!=='object'||!j.entries)throw new Error('format');parsed=migrate(j);}
     catch(e){toast('読み込めませんでした。Good 3 Moreで書き出したファイルを選んでください');return;}
     const n=Object.keys(parsed.entries).length;
     const ok=await confirmDialog({title:'このファイルの内容に置き換えますか?',body:`ファイルには記録${n}日分が入っています。\n現在の状態は先に自動で控えるので、あとから元に戻せます。`,ok:'置き換える'});
@@ -1662,8 +2093,8 @@ function mergeStores(localRaw,remoteRaw){
   const a=migrate(JSON.parse(JSON.stringify(localRaw||{})));
   const b=migrate(JSON.parse(JSON.stringify(remoteRaw||{})));
   // 削除の記録は両方を合わせ、新しい時刻を採用
-  const del={entries:{},habits:{},goals:{}};
-  ['entries','habits','goals'].forEach(k=>{[a.deleted[k],b.deleted[k]].forEach(src=>{Object.entries(src||{}).forEach(([id,t])=>{if(del[k][id]===undefined||tsOf(t)>tsOf(del[k][id]))del[k][id]=t;});});});
+  const del={entries:{},habits:{},goals:{},year_goals:{}};
+  ['entries','habits','goals','year_goals'].forEach(k=>{[a.deleted[k],b.deleted[k]].forEach(src=>{Object.entries(src||{}).forEach(([id,t])=>{if(del[k][id]===undefined||tsOf(t)>tsOf(del[k][id]))del[k][id]=t;});});});
   // 1件ごとに更新時刻が新しい方を採用(同時刻ならこの端末を優先)。削除の方が新しければ消す
   const pickMap=(ma,mb,delMap,keyOf)=>{
     const res={};
@@ -1685,7 +2116,12 @@ function mergeStores(localRaw,remoteRaw){
   b.habits.forEach(h=>{if(!seen.has(h.id))habits.push(h);});
   out.habits=habits.filter(h=>{const t=del.habits[h.id];if(t===undefined)return true;if(tsOf(t)>=tsOf(h.updated_at))return false;delete del.habits[h.id];return true;});
   const sa=a.settings,sb=b.settings,win=tsOf(sb.updated_at)>tsOf(sa.updated_at)?sb:sa;
-  out.settings=Object.assign({},win,{nudge_dismissed:Object.assign({},sa.nudge_dismissed,sb.nudge_dismissed)});
+  out.settings=Object.assign({},win,{nudge_dismissed:Object.assign({},sa.nudge_dismissed,sb.nudge_dismissed),birth_ym:win.birth_ym||sa.birth_ym||sb.birth_ym||''});
+  // 生涯:ミッションは新しい方、分野は分野ごとに新しい方。年間目標は1件ごと
+  out.life={mission:tsOf(b.life.mission.updated_at)>tsOf(a.life.mission.updated_at)?b.life.mission:a.life.mission,areas:pickMap(a.life.areas,b.life.areas,{})};
+  out.year_goals=pickMap(a.year_goals,b.year_goals,del.year_goals);
+  // この版が知らない項目(将来の版が足したもの)は、消さずにそのまま残す
+  Object.keys(b).forEach(k=>{if(!(k in out))out[k]=b[k];});
   out.deleted=del;
   if(tsOf(b.created_at)&&(!tsOf(a.created_at)||tsOf(b.created_at)<tsOf(a.created_at)))out.created_at=b.created_at;
   delete out.updated_at;
@@ -1705,6 +2141,7 @@ const cloudDb={
 };
 function cloudErrInfo(e){
   const m=String((e&&(e.message||e.error_description))||e||''),code=e&&e.code;
+  if(code==='G3M_NEWER')return{state:'error',msg:'アプリの新しい版が出ています。この画面を再読み込みしてください'};
   if((typeof navigator!=='undefined'&&navigator.onLine===false)||/Failed to fetch|NetworkError|Load failed|network/i.test(m))return{state:'offline',msg:'通信できません。つながったら自動で同期します'};
   if(code==='42P01'||code==='PGRST205'||/does not exist|Could not find the table/i.test(m))return{state:'error',msg:'クラウド側の準備(SQLの実行)がまだのようです'};
   if(code==='42501'||/row-level security|permission denied/i.test(m))return{state:'error',msg:'クラウド側のアクセス設定(SQL)を確認してください'};
@@ -1818,6 +2255,8 @@ async function syncNow(manual){
       flushSave();
       const seq=mutSeq,local=syncView(db);
       const row=await cloudDb.pull(uid);
+      // クラウド側がより新しい版のアプリで保存されている場合は、古い版のまま上書きしない
+      if(row&&row.data&&(parseInt(row.data.schema_version)||0)>SCHEMA_VERSION){const ne=new Error('newer app version');ne.code='G3M_NEWER';throw ne;}
       if(!row){   // クラウドが空:この端末の記録をそのまま置く
         try{await cloudDb.insert(uid,local);pushed=local;done=true;}
         catch(e){if(e&&e.code==='23505')continue;throw e;}
@@ -1916,16 +2355,20 @@ function coachLine(e){
 /* ---- modal / confirm / toast ---- */
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400);}
-function openModal(html,label){
+// focusSel: 開いたときにカーソルを置く欄。null を渡すと欄には置かない(スマホでキーボードが勝手に出ないように)
+function openModal(html,label,focusSel){
   const bg=$('modalBg'),box=$('modalBox');
   if(!bg.classList.contains('show'))lastFocus=document.activeElement;
-  box.innerHTML=html;box.setAttribute('aria-label',label||'');bg.classList.add('show');
-  const f=box.querySelector('input,select,textarea')||box.querySelector('.btn')||box;f.focus();
+  modalOnClose=null;
+  box.innerHTML=html;box.setAttribute('aria-label',label||'');bg.classList.add('show');box.scrollTop=0;
+  const f=focusSel===null?box:(focusSel?box.querySelector(focusSel):null)||box.querySelector('input,select,textarea')||box.querySelector('.btn')||box;
+  f.focus();
 }
 function closeModal(){
   const bg=$('modalBg');if(!bg.classList.contains('show'))return;
   bg.classList.remove('show');$('modalBox').innerHTML='';
   if(modalResolver){const r=modalResolver;modalResolver=null;r(false);}
+  if(modalOnClose){const f=modalOnClose;modalOnClose=null;f();}
   if(lastFocus&&document.contains(lastFocus)){try{lastFocus.focus();}catch(e){}}
 }
 function confirmDialog(o){
@@ -2049,6 +2492,45 @@ function init(){
 
   // goals
   $('goalTabs').addEventListener('click',ev=>{const b=ev.target.closest('button[data-gtab]');if(!b)return;flushSave();goalTab=b.dataset.gtab;renderGoals();});
+  // 生涯:ミッション・マンダラ・年表
+  $('lifeMission').addEventListener('input',ev=>{db.life.mission={text:ev.target.value,updated_at:new Date().toISOString()};scheduleSave();});
+  $('lifeMission').addEventListener('blur',()=>{if(goalTab==='life')renderLife();});
+  $('lifePane').addEventListener('click',ev=>{
+    const v=ev.target.closest('[data-lview]');
+    if(v){lifeView=v.dataset.lview;renderLife();return;}
+    if(ev.target.closest('#lifeBack')){lifeArea=null;renderLife();return;}
+    const tl=ev.target.closest('.tl-row');
+    if(tl){openDream(tl.dataset.area,parseInt(tl.dataset.dream));return;}
+    const t=ev.target.closest('.mtile');if(!t)return;
+    if(t.dataset.center==='mission'){$('lifeMission').focus();$('lifeMission').scrollIntoView({block:'center',behavior:'smooth'});return;}
+    if(t.dataset.center==='theme'){openAreaEdit(lifeArea);return;}
+    if(t.dataset.dream!==undefined){openDream(lifeArea,parseInt(t.dataset.dream));return;}
+    if(t.dataset.area){lifeArea=t.dataset.area;renderLife();}
+  });
+  // 年間目標
+  $('yearPrev').onclick=()=>{yearCursor--;yearFilter='all';renderYear();};
+  $('yearNext').onclick=()=>{yearCursor++;yearFilter='all';renderYear();};
+  $('yearFilter').addEventListener('click',ev=>{const c=ev.target.closest('[data-yf]');if(!c)return;yearFilter=c.dataset.yf;renderYear();});
+  $('yearList').addEventListener('click',ev=>{const r=ev.target.closest('[data-yg]');if(r)openYearGoal(r.dataset.yg);});
+  $('yearAdd').onclick=()=>openYearGoal(null);
+  $('heroMission').onclick=()=>openGoals('life');
+  // 動かない目標:小さく書き直す/今回は外す
+  $('s-goals').addEventListener('click',ev=>{
+    const b=ev.target.closest('[data-stale]');if(!b)return;
+    const block=b.closest('.goal-block'),i=parseInt(block.dataset.gi),g=goalRef();
+    if(b.dataset.stale==='drop'){
+      g.items[i]={text:'',review:'',status:'',parent:''};g.updated_at=new Date().toISOString();
+      saveNow(true);renderGoals();renderHome();toast('今回は外しました。必要になったらまた入れられます');
+    }else{
+      const inp=block.querySelector('.goal-text');inp.focus();inp.select();
+      toast('最初の30分でできる形に、小さく書き直してみましょう');
+    }
+  });
+  $('birthYm').addEventListener('change',ev=>{
+    const v=ev.target.value.trim();
+    if(v&&!/^\d{4}-(0[1-9]|1[0-2])$/.test(v)){toast('1985-04 のように、年と月を入力してください');return;}
+    db.settings.birth_ym=v;touchSettings();saveNow(true);render();toast(v?'年齢の表示に反映しました':'年齢の表示をやめました');
+  });
   $('goalPrev').onclick=()=>moveGoal(-1);
   $('goalNext').onclick=()=>moveGoal(1);
   $('goalNow').onclick=()=>{flushSave();const t=todayStr();goalCursor[goalTab]=goalTab==='weekly'?mondayOf(t):monthKey(t);renderGoals();};
@@ -2057,7 +2539,7 @@ function init(){
     const pending=goalItemsOf(goalTab,prevKey).filter(it=>hasText(it.text)&&it.status!=='done').slice(0,5);
     if(!pending.length)return;
     const g=goalRef();
-    pending.forEach((it,i)=>{g.items[i]={text:it.text,review:'',status:''};});
+    pending.forEach((it,i)=>{g.items[i]={text:it.text,review:'',status:'',parent:it.parent||''};});
     g.updated_at=new Date().toISOString();
     saveNow(true);renderGoals();toast(`${pending.length}件を引き継ぎました。内容は自由に直せます`);
   };
