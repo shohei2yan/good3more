@@ -326,6 +326,9 @@
   .tl-text,.yg-text{display:block;font-weight:700;font-size:14.5px;line-height:1.45;word-break:break-word;}
   .tl-sub,.yg-sub{display:block;font-size:12px;color:var(--sub);}
   .yg-row.done .yg-text{color:var(--sub);} .yg-row.dropped{opacity:.6;} .yg-row.dropped .yg-text{text-decoration:line-through;}
+  .mtile.act.sel{border-color:var(--primary);box-shadow:inset 0 0 0 1.5px var(--primary);}
+  .mtile.act.done{background:#f4fbf8;border-color:#bfe8d6;}
+  .mtile.act .mt-foot{color:var(--green-ink);font-weight:700;}
   .age-line{font-size:12.5px;color:var(--primary-dark);font-weight:600;margin-top:5px;min-height:18px;}
   .log-item{font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line);word-break:break-word;}
   .log-item b{color:var(--sub);font-size:12px;margin-right:6px;}
@@ -495,7 +498,7 @@
       <div class="sep" role="presentation"></div>
       <button type="button" data-screen="settings"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg>設定・データ</button>
     </nav>
-    <div class="side-foot">試用版 0.3<br>データはこの端末のブラウザ内に保存されます</div>
+    <div class="side-foot">試用版 0.4<br>データはこの端末のブラウザ内に保存されます</div>
   </aside>
 
   <main>
@@ -852,7 +855,7 @@
             <input type="month" id="birthYm" placeholder="1985-04" style="max-width:220px;">
           </div>
           <div class="btn-row" style="margin-top:0;"><button type="button" class="btn ghost sm" id="guideAgain">はじめのガイドをもう一度表示</button></div>
-          <p class="hint-line">Good 3 More 試用版 0.3</p>
+          <p class="hint-line">Good 3 More 試用版 0.4</p>
         </div>
 
         <div class="card danger-zone">
@@ -881,7 +884,7 @@
 
 <script>
 /* =========================================================
-   Good 3 More — 試用版 0.3 (single file / local storage)
+   Good 3 More — 試用版 0.4 (single file / local storage)
    ・データ保存キーは v1 から変更なし(既存の記録をそのまま読み込みます)
    ・移行は「項目を足すだけ」の非破壊方式
    ========================================================= */
@@ -949,12 +952,19 @@ function normalizeLife(l){
   });
   return{mission:{text:String(m.text||''),updated_at:m.updated_at||''},areas};
 }
+// 年間目標を「行動」に分解した8マス(habit=習慣にした場合のID、week=週の目標に送った週)
+function normalizeActions(a){
+  const out=(Array.isArray(a)?a:[]).slice(0,8).map(x=>{x=(x&&typeof x==='object')?x:{};return{text:String(x.text||''),done:!!x.done,habit:String(x.habit||''),week:String(x.week||'')};});
+  while(out.length<8)out.push({text:'',done:false,habit:'',week:''});
+  return out;
+}
 function normalizeYearGoal(g){
   g=(g&&typeof g==='object')?g:{};
   const dt=v=>/^\d{4}-\d{2}-\d{2}$/.test(v||'')?v:'';
   const out={id:String(g.id||''),year:parseInt(g.year)||new Date().getFullYear(),order:Number(g.order)||0,motive:String(g.motive||''),text:String(g.text||''),detail:String(g.detail||''),result:String(g.result||''),
     area:LIFE_AREA_IDS.includes(g.area)?g.area:'',dream:(Number.isInteger(g.dream)&&g.dream>=0&&g.dream<8)?g.dream:null,start:dt(g.start),end:dt(g.end),
     status:DSTATUS.some(s=>s.k===g.status)?g.status:'todo',logs:(Array.isArray(g.logs)?g.logs:[]).filter(x=>x&&typeof x==='object'&&x.text).map(x=>({d:String(x.d||''),text:String(x.text)})),
+    actions:normalizeActions(g.actions),
     created_at:g.created_at||'',updated_at:g.updated_at||''};
   return out;
 }
@@ -1790,7 +1800,8 @@ function yearGoalsOf(y){return Object.values(db.year_goals).filter(g=>g.year===y
 function yearGoalRollup(id){   // この年間目標につながる月・週の目標と、取り組んだ日数
   let items=0,done=0,worked=0;
   ['weekly','monthly'].forEach(t=>{for(const[k,g]of Object.entries(db.goals[t])){normalizeGoal(g).items.forEach((it,i)=>{if(it.parent===id&&hasText(it.text)){items++;if(it.status==='done')done++;worked+=goalProgress(t,k,i).worked;}});}});
-  return{items,done,worked};
+  const g=db.year_goals[id],acts=g?g.actions.filter(a=>hasText(a.text)):[];
+  return{items,done,worked,acts:acts.length,actsDone:acts.filter(a=>a.done).length,habits:db.habits.filter(h=>h.parent===id).length};
 }
 function addYearGoalFromDream(a,i){
   const d=a.dreams[i],y=new Date().getFullYear(),now=new Date().toISOString();
@@ -1817,7 +1828,7 @@ function renderYear(){
   const list=all.filter(g=>yearFilter==='all'||g.status===yearFilter);
   $('yearList').innerHTML=list.length?list.map(g=>{
     const a=g.area?db.life.areas[g.area]:null,info=deadlineInfo(g.end,g.status),r=yearGoalRollup(g.id),e=g.end?parseDate(g.end):null;
-    const sub=[a?a.name:'',e?`〜${e.getMonth()+1}/${e.getDate()}`+(info.over?'':(info.left>=0?`(あと${info.left}日)`:'')):'',r.items?`月・週の目標 ${r.items}件`:'',r.worked?`取り組み${r.worked}日`:''].filter(Boolean).join('・');
+    const sub=[a?a.name:'',e?`〜${e.getMonth()+1}/${e.getDate()}`+(info.over?'':(info.left>=0?`(あと${info.left}日)`:'')):'',r.acts?`行動 ${r.actsDone}/${r.acts}`:'',r.habits?`習慣 ${r.habits}つ`:'',r.items?`月・週の目標 ${r.items}件`:'',r.worked?`取り組み${r.worked}日`:''].filter(Boolean).join('・');
     return `<button type="button" class="yg-row ${g.status}" data-yg="${g.id}"><span class="yg-main"><span class="yg-text">${esc(g.text)}</span><span class="yg-sub">${esc(sub)}</span></span><span class="dtag ${info.over?'over':g.status}">${info.over?'期限超過':dstatusLabel(g.status)}</span></button>`;
   }).join(''):`<div class="empty-state">${ic('target')}<br>${yearCursor}年の目標はまだありません。<br>「生涯」の夢から「今年の目標にする」で作ることもできます。</div>`;
 }
@@ -1841,7 +1852,7 @@ function openYearGoal(id){
     ${isNew?'':`<div class="field"><label class="lb" for="ygResult">結果 <span class="hint">終わったときに</span></label><textarea id="ygResult" maxlength="800" style="min-height:56px;">${esc(g.result)}</textarea></div>
     <div class="field"><label class="lb" for="ygLog">進み具合のメモ <span class="hint">半月に一度が目安</span></label><div id="ygLogs">${logsHTML()}</div>
       <div class="inline" style="margin-top:6px;"><input type="text" id="ygLog" maxlength="200" placeholder="例:本を1冊読了。次は実践する" enterkeyhint="done"><button type="button" class="btn sub sm" id="ygLogAdd" style="flex:none;">メモを追加</button></div></div>`}
-    <div class="btn-row end">${isNew?'':`<button type="button" class="btn danger sm" id="ygDelete" style="margin-right:auto;">${ic('trash','sm')}削除</button>`}<button type="button" class="btn ghost" onclick="closeModal()">キャンセル</button><button type="button" class="btn" id="ygSave">${isNew?'追加する':'保存する'}</button></div>`,'年間目標',isNew?'#ygText':null);
+    <div class="btn-row end">${isNew?'':`<button type="button" class="btn danger sm" id="ygDelete" style="margin-right:auto;">${ic('trash','sm')}削除</button>`}<button type="button" class="btn sub sm" id="ygMandala">${ic('target','sm')}行動に分解${isNew?'':`(${g.actions.filter(a=>hasText(a.text)).length}/8)`}</button><button type="button" class="btn ghost" onclick="closeModal()">キャンセル</button><button type="button" class="btn" id="ygSave">${isNew?'追加する':'保存する'}</button></div>`,'年間目標',isNew?'#ygText':null);
   $('ygArea').onchange=e=>{$('ygDream').innerHTML=dreamOpts(e.target.value);$('ygDream').value='';};
   $('ygStatus').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;st=c.dataset.st;$('ygStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===st)));});
   if(!isNew){
@@ -1854,20 +1865,79 @@ function openYearGoal(id){
       snapshotCurrent('manual');delete db.year_goals[g.id];db.deleted.year_goals[g.id]=new Date().toISOString();saveNow(true);render();toast('削除しました');
     };
   }
-  $('ygSave').onclick=()=>{
+  // 入力内容を目標に反映して保存する(保存ボタンと「行動に分解」の両方から使う)
+  const applyForm=()=>{
     const text=$('ygText').value.trim();
-    if(!text){toast('目標を入力してください');$('ygText').focus();return;}
+    if(!text){toast('目標を入力してください');$('ygText').focus();return false;}
     const now=new Date().toISOString(),dt=v=>/^\d{4}-\d{2}-\d{2}$/.test(v)?v:'';
     const start=dt($('ygStart').value),end=dt($('ygEnd').value);
-    if(start&&end&&end<start){toast('終了日は開始日より後にしてください');return;}
+    if(start&&end&&end<start){toast('終了日は開始日より後にしてください');return false;}
     const dv=$('ygDream').value;
     Object.assign(g,{text:text.slice(0,100),motive:$('ygMotive').value,detail:$('ygDetail').value,area:$('ygArea').value,dream:dv===''?null:parseInt(dv),start,end,status:st,updated_at:now});
-    if(!isNew)g.result=$('ygResult').value;
-    if(isNew){g.id=uid('yg');g.order=Object.values(db.year_goals).reduce((m,x)=>Math.max(m,x.order),0)+1;g.created_at=now;db.year_goals[g.id]=g;}
+    if($('ygResult'))g.result=$('ygResult').value;
+    if(!db.year_goals[g.id]||!g.id){g.id=g.id||uid('yg');g.order=Object.values(db.year_goals).reduce((m,x)=>Math.max(m,x.order),0)+1;g.created_at=now;db.year_goals[g.id]=g;}
     delete db.deleted.year_goals[g.id];
-    saveNow(true);modalOnClose=null;closeModal();render();toast(isNew?'年間目標を追加しました':'保存しました');
+    saveNow(true);
+    return true;
   };
+  $('ygSave').onclick=()=>{if(!applyForm())return;modalOnClose=null;closeModal();render();toast(isNew?'年間目標を追加しました':'保存しました');};
+  $('ygMandala').onclick=()=>{if(!applyForm())return;modalOnClose=null;openGoalMandala(g.id);};
   modalOnClose=()=>{render();};
+}
+/* ---- 行動に分解する(マンダラ):年間目標を中心に、まわりの8マスへ行動を書く ---- */
+function openGoalMandala(id){
+  const g=db.year_goals[id];if(!g)return;
+  let sel=g.actions.findIndex(a=>!hasText(a.text));if(sel<0)sel=0;
+  openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
+    <h3>行動に分解する</h3><p class="msub">この目標に近づく行動を、最大8つ。毎日・毎週できる大きさまで小さくするのがコツです。</p>
+    <div class="mandala" id="gmGrid" style="margin-bottom:14px;"></div>
+    <div class="field"><label class="lb" for="gmText"><span id="gmLb">行動 1</span> <span class="hint" id="gmCount"></span></label>
+      <input type="text" id="gmText" maxlength="40" placeholder="例:朝の15分をこれに使う" enterkeyhint="done"></div>
+    <div class="btn-row" style="margin-top:0;">
+      <button type="button" class="chip" id="gmDone" aria-pressed="false">${ic('check','sm')}できた</button>
+      <button type="button" class="btn sub sm" id="gmHabit">${ic('habit','sm')}習慣にする</button>
+      <button type="button" class="btn sub sm" id="gmWeek">${ic('arrow','sm')}今週の目標に入れる</button>
+    </div>
+    <div class="btn-row end"><button type="button" class="btn" onclick="closeModal()">閉じる</button></div>`,'行動に分解する',null);
+  const touch=()=>{g.updated_at=new Date().toISOString();};
+  const draw=()=>{
+    const tiles=g.actions.map((a,i)=>{
+      const has=hasText(a.text),foot=a.done?'できた':(a.habit&&db.habits.some(h=>h.id===a.habit))?'習慣にした':a.week?'週の目標へ':'';
+      return `<button type="button" class="mtile act${a.done&&has?' done':''}${i===sel?' sel':''}" data-act="${i}" aria-pressed="${i===sel}" aria-label="行動${i+1}"><span class="mt-text${has?'':' mt-empty'}">${esc(has?a.text:'＋ 行動')}</span>${has&&foot?`<span class="mt-foot">${foot}</span>`:''}</button>`;
+    });
+    tiles.splice(4,0,`<div class="mtile center"><span class="mt-name">年間目標</span><span class="mt-theme">${esc(g.text)}</span></div>`);
+    $('gmGrid').innerHTML=tiles.join('');
+    const a=g.actions[sel],has=hasText(a.text);
+    $('gmLb').textContent=`行動 ${sel+1}`;
+    if(document.activeElement!==$('gmText'))$('gmText').value=a.text;
+    $('gmDone').setAttribute('aria-pressed',String(a.done&&has));$('gmDone').disabled=!has;
+    $('gmHabit').disabled=!has||!!(a.habit&&db.habits.some(h=>h.id===a.habit));
+    $('gmWeek').disabled=!has;
+    const filled=g.actions.filter(x=>hasText(x.text));
+    $('gmCount').textContent=`${filled.length} / 8${filled.length?'・できた '+filled.filter(x=>x.done).length:''}`;
+  };
+  $('gmGrid').addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;sel=parseInt(t.dataset.act);$('gmText').blur();draw();});
+  $('gmText').addEventListener('input',e=>{g.actions[sel].text=e.target.value;if(!hasText(e.target.value))g.actions[sel].done=false;touch();scheduleSave();draw();});
+  $('gmText').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();const n=g.actions.findIndex((a,i)=>i>sel&&!hasText(a.text));e.target.blur();if(n>=0){sel=n;draw();$('gmText').focus();}}});
+  $('gmDone').onclick=()=>{const a=g.actions[sel];a.done=!a.done;touch();saveNow(true);draw();};
+  $('gmHabit').onclick=()=>{
+    const a=g.actions[sel];if(!hasText(a.text))return;
+    if(db.habits.length>=HABIT_MAX){toast(`習慣は最大${HABIT_MAX}個までです。先に「習慣」で整理してください`);return;}
+    const now=new Date().toISOString(),hid=uid('habit');
+    db.habits.push({id:hid,name:a.text.trim().slice(0,30),schedule_type:'daily',weekdays:[],active:true,sort_order:db.habits.length+1,start_on:todayStr(),parent:g.id,created_at:now,updated_at:now});
+    a.habit=hid;touch();saveNow(true);draw();toast('習慣に追加しました(毎日)。頻度は「習慣」から変えられます');
+  };
+  $('gmWeek').onclick=()=>{
+    const a=g.actions[sel];if(!hasText(a.text))return;
+    const wk=mondayOf(todayStr()),gw=normalizeGoal(db.goals.weekly[wk]),tx=a.text.trim().slice(0,60);
+    if(gw.items.some(it=>it.text.trim()===tx)){toast('すでに今週の目標に入っています');return;}
+    const idx=gw.items.findIndex(it=>!hasText(it.text));
+    if(idx<0){toast('今週の目標は5つ埋まっています。どれかを外してから入れてください');return;}
+    gw.items[idx]={text:tx,review:'',status:'',parent:g.id};gw.period_key=wk;gw.updated_at=new Date().toISOString();db.goals.weekly[wk]=gw;
+    a.week=wk;touch();saveNow(true);draw();toast('今週の目標に入れました');
+  };
+  draw();
+  modalOnClose=()=>{flushSave();render();};
 }
 function parentOptionsHTML(type,key,cur){   // 月・週の目標を、年間目標につなげるための選択肢
   const y=parseInt((type==='weekly'?addDays(key,3):key+'-01').slice(0,4));
