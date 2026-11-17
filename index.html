@@ -344,6 +344,40 @@
   .age-line{font-size:12.5px;color:var(--primary-dark);font-weight:600;margin-top:5px;min-height:18px;}
   .log-item{font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line);word-break:break-word;}
   .log-item b{color:var(--sub);font-size:12px;margin-right:6px;}
+  .steps-head{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+  .steps-head .lb{margin:0;}
+  .steps-head .cnt{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--green-ink);}
+  .step{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:6px;overflow:hidden;}
+  .step.open{border-color:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,.08);}
+  .step-row{display:flex;align-items:center;gap:2px;padding:2px 10px 2px 2px;min-height:48px;}
+  .step-row>.ic{color:var(--faint);flex-shrink:0;transition:transform .2s;}
+  .step.open .step-row>.ic{transform:rotate(180deg);}
+  .step-check{width:44px;height:44px;border:none;background:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:10px;}
+  .step-check i{width:22px;height:22px;border-radius:50%;border:2px solid #c3cbd9;display:flex;align-items:center;justify-content:center;color:#fff;transition:all .15s;}
+  .step-check i .ic{width:14px;height:14px;opacity:0;}
+  .step-check:hover i{border-color:var(--green);}
+  .step.done .step-check i{background:var(--green);border-color:var(--green);}
+  .step.done .step-check i .ic{opacity:1;}
+  .step-main{flex:1;min-width:0;background:none;border:none;text-align:left;padding:6px 0;}
+  .step-text{display:block;font-size:14px;font-weight:600;line-height:1.45;word-break:break-word;color:var(--text);}
+  .step-sub{display:block;font-size:12px;color:var(--sub);}
+  .step-sub.over{color:var(--amber);font-weight:700;}
+  .step.done .step-text{color:var(--sub);text-decoration:line-through;}
+  .step.dropped{opacity:.6;} .step.dropped .step-text{text-decoration:line-through;}
+  .step-edit{padding:10px 12px 12px;border-top:1px dashed var(--line);}
+  .step-edit .field{margin-bottom:10px;}
+  .step-add{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;}
+  .step-add input[type="text"]{flex:1 1 100%;min-width:0;}
+  .step-add input[type="date"]{flex:1;min-width:0;max-width:200px;}
+  .tl-row.step{min-height:44px;padding:6px 12px 6px 24px;background:#fbfcfe;position:relative;}
+  .tl-row.step::before{content:"";position:absolute;left:11px;top:50%;width:6px;height:6px;border-radius:50%;background:#c3cbd9;transform:translateY(-50%);}
+  .tl-row.step .tl-text{font-size:13.5px;font-weight:600;}
+  .tl-row.step.done .tl-text{color:var(--sub);text-decoration:line-through;}
+  .tl-row .tl-date.full{min-width:78px;}
+  .mt-footrow{display:flex;justify-content:space-between;align-items:baseline;gap:4px;flex-shrink:0;min-width:0;}
+  .mt-footrow .mt-foot{flex:1;min-width:0;flex-shrink:1;}
+  .mt-steps{font-size:11px;font-weight:700;color:var(--green-ink);flex-shrink:0;}
+  .dream-card .dc-step{color:var(--primary-dark);font-weight:600;margin-top:2px;}
   .stale{background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:10px;padding:8px 10px;margin-bottom:8px;font-size:13px;color:#7c3a03;}
   .stale .btn-row{margin-top:6px;gap:6px;}
   .goal-parent{font-size:13.5px!important;margin-top:8px;color:var(--sub);}
@@ -511,7 +545,7 @@
       <div class="sep" role="presentation"></div>
       <button type="button" data-screen="settings"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg>設定・データ</button>
     </nav>
-    <div class="side-foot">試用版 0.5<br>データはこの端末のブラウザ内に保存されます</div>
+    <div class="side-foot">試用版 0.6<br><span id="sideWhere">データはこの端末のブラウザ内に保存されます</span></div>
   </aside>
 
   <main>
@@ -558,6 +592,7 @@
             <span class="dc-lb" id="dreamLb"></span>
             <span class="dc-text" id="dreamText"></span>
             <span class="dc-sub" id="dreamSub"></span>
+            <span class="dc-sub dc-step" id="dreamStep" hidden></span>
           </button>
           <button type="button" class="icon-btn" id="dreamNext" aria-label="別の夢を見る" title="別の夢を見る"><svg class="ic" aria-hidden="true"><use href="#i-sync"/></svg></button>
         </div>
@@ -835,7 +870,7 @@
             <button type="button" class="btn" id="coachMake"><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg><span id="coachMakeLb">レポートを作る</span></button>
           </div>
           <p class="info-line" id="coachStatus" role="status" aria-live="polite" style="margin-top:10px;"></p>
-          <p class="hint-line">AIに送る内容:生涯の夢、年間目標、直近14日の記録、週・月の目標、習慣。作成には1分ほどかかります。作れるのは7日間に3回までです。</p>
+          <p class="hint-line">AIに送る内容:生涯の夢とステップ、年間目標、直近14日の記録、週・月の目標、習慣。作成には1分ほどかかります。作れるのは7日間に3回までです。</p>
         </div>
 
         <div id="coachReport"></div>
@@ -897,7 +932,7 @@
             <input type="month" id="birthYm" placeholder="1985-04" style="max-width:220px;">
           </div>
           <div class="btn-row" style="margin-top:0;"><button type="button" class="btn ghost sm" id="guideAgain">はじめのガイドをもう一度表示</button></div>
-          <p class="hint-line">Good 3 More 試用版 0.5</p>
+          <p class="hint-line">Good 3 More 試用版 0.6</p>
         </div>
 
         <div class="card danger-zone">
@@ -926,15 +961,16 @@
 
 <script>
 /* =========================================================
-   Good 3 More — 試用版 0.5 (single file / local storage)
+   Good 3 More — 試用版 0.6 (single file / local storage)
    ・データ保存キーは v1 から変更なし(既存の記録をそのまま読み込みます)
    ・移行は「項目を足すだけ」の非破壊方式
    ========================================================= */
 const STORE_KEY='good3more:v1';
 const SNAP_KEY='good3more:snapshots';
-const SCHEMA_VERSION=4;
+const SCHEMA_VERSION=5;
 const SNAP_AUTO_MAX=12, SNAP_DAILY_MAX=14, SNAP_MANUAL_MAX=6, AUTO_MIN_GAP=10*60*1000;
 const HABIT_MAX=20;
+const STEP_MAX=8;   // 夢1つにつけられるステップの数
 const WD_JP=['日','月','火','水','木','金','土'];
 const GSTATUS=[{k:'done',sym:'◎',l:'達成'},{k:'mostly',sym:'○',l:'ほぼ'},{k:'partial',sym:'△',l:'一部'},{k:'none',sym:'×',l:'未達'}];
 // 夢・年間目標の状態(長く付き合う目標なので「継続」「中止」も持つ)
@@ -980,7 +1016,13 @@ function dayWord(s){const t=todayStr();if(s===t)return '今日';if(s===addDays(t
 /* ---------- store: load / migrate ---------- */
 function freshStore(){const now=new Date().toISOString();return{schema_version:SCHEMA_VERSION,entries:{},habits:[],goals:{weekly:{},monthly:{}},life:normalizeLife(null),year_goals:{},coach_reports:{},settings:{coach_mode:'gentle',onboarding_dismissed:false,nudge_dismissed:{},birth_ym:''},deleted:{entries:{},habits:{},goals:{},year_goals:{}},created_at:now,updated_at:now};}
 // 生涯の構造: 中心(mission)+ 8分野(a1〜a8)。各分野に「ありたい姿」と8つの夢
-function normalizeDream(d){d=(d&&typeof d==='object')?d:{};return{text:String(d.text||''),note:String(d.note||''),deadline:/^\d{4}-\d{2}-\d{2}$/.test(d.deadline||'')?d.deadline:'',status:DSTATUS.some(s=>s.k===d.status)?d.status:'todo'};}
+// 夢へのステップ(期日つきの道のり)。文のないものは持たない
+function normalizeSteps(a){
+  const dt=v=>/^\d{4}-\d{2}-\d{2}$/.test(v||'')?v:'';
+  return (Array.isArray(a)?a:[]).filter(x=>x&&typeof x==='object'&&typeof x.text==='string'&&x.text.trim()!=='').slice(0,STEP_MAX)
+    .map(x=>({id:String(x.id||uid('st')),text:String(x.text),deadline:dt(x.deadline),status:DSTATUS.some(s=>s.k===x.status)?x.status:'todo',week:String(x.week||'')}));
+}
+function normalizeDream(d){d=(d&&typeof d==='object')?d:{};return{text:String(d.text||''),note:String(d.note||''),deadline:/^\d{4}-\d{2}-\d{2}$/.test(d.deadline||'')?d.deadline:'',status:DSTATUS.some(s=>s.k===d.status)?d.status:'todo',steps:normalizeSteps(d.steps)};}
 function normalizeLife(l){
   l=(l&&typeof l==='object')?l:{};
   const m=(l.mission&&typeof l.mission==='object')?l.mission:{};
@@ -1747,6 +1789,27 @@ function deadlineInfo(ds,status){   // 期限の表示用:日付・その時の�
   return{date,age,left,over,text:[date,age,rest].filter(Boolean).join('・')};
 }
 function allDreams(){const list=[];lifeAreas().forEach(a=>a.dreams.forEach((d,i)=>{if(hasText(d.text))list.push({area:a,i,d});}));return list;}
+// ステップ:日付の早い順(日付なしは後ろ)。まだ終わっていないもの=未着手・進行中・継続
+function stepSort(steps){return steps.map((s,i)=>({s,i})).sort((p,q)=>{const a=p.s.deadline||'9999',b=q.s.deadline||'9999';return a<b?-1:a>b?1:p.i-q.i;}).map(x=>x.s);}
+function stepOpen(s){return s.status!=='done'&&s.status!=='dropped';}
+function stepStat(d){const all=d.steps.filter(s=>hasText(s.text)&&s.status!=='dropped');return{total:all.length,done:all.filter(s=>s.status==='done').length};}
+function nextStep(d){const open=stepSort(d.steps.filter(s=>hasText(s.text)&&stepOpen(s)));return open.find(s=>s.status!=='ongoing')||open[0]||null;}
+function stepSubText(s){
+  const info=deadlineInfo(s.deadline,s.status);
+  return{over:info.over,text:[info.date,info.age,info.over?'期限を過ぎています':((info.left!=null&&info.left>=0&&stepOpen(s))?`あと${info.left}日`:''),(s.status==='doing'||s.status==='ongoing'||s.status==='dropped')?dstatusLabel(s.status):''].filter(Boolean).join('・')};
+}
+// 週の目標に1件入れる(金〜日は来週、月〜木は今週)。結果とメッセージを返す
+function planWeekKey(){const t=todayStr(),cur=mondayOf(t);return daysBetween(cur,t)>=4?addDays(cur,7):cur;}
+function pushWeeklyGoal(text,parent,wk){
+  wk=wk||planWeekKey();
+  const label=wk===mondayOf(todayStr())?'今週':'来週',raw=String(text||'').trim(),tx=raw.slice(0,60);
+  const g=normalizeGoal(db.goals.weekly[wk]);
+  if(g.items.some(it=>it.text.trim()===tx))return{ok:false,wk,msg:`すでに${label}の目標に入っています`};
+  const idx=g.items.findIndex(it=>!hasText(it.text));
+  if(idx<0)return{ok:false,wk,msg:`${label}の目標は5つ埋まっています。どれかを外してから入れてください`};
+  g.items[idx]={text:tx,review:'',status:'',parent:parent||''};g.period_key=wk;g.updated_at=new Date().toISOString();db.goals.weekly[wk]=g;
+  return{ok:true,wk,msg:`${label}の目標に入れました${raw.length>60?'(長いので60文字にしています)':''}`};
+}
 
 function renderLife(){
   const m=$('lifeMission');if(document.activeElement!==m)m.value=db.life.mission.text;
@@ -1766,54 +1829,138 @@ function lifeOverviewHTML(){
 }
 function lifeAreaHTML(a){
   const tiles=a.dreams.map((d,i)=>{
-    const info=deadlineInfo(d.deadline,d.status),has=hasText(d.text);
-    const foot=info.over?'期限超過':(d.deadline?info.date:(d.status==='todo'?'日付を入れる':dstatusLabel(d.status)));
+    const info=deadlineInfo(d.deadline,d.status),has=hasText(d.text),st=stepStat(d);
+    const foot=info.over?'期限超過':(d.deadline?info.date:(d.status==='todo'?(st.total?'':'日付を入れる'):dstatusLabel(d.status)));
     return `<button type="button" class="mtile dream ${d.status}" data-dream="${i}" aria-label="夢${i+1}を編集">
       <span class="mt-text${has?'':' mt-empty'}">${esc(has?d.text:'＋ 夢を書く')}</span>
-      ${has?`<span class="mt-foot${info.over?' over':''}">${esc(foot)}</span>`:''}
+      ${has?`<span class="mt-footrow"><span class="mt-foot${info.over?' over':''}">${esc(foot)}</span>${st.total?`<span class="mt-steps" title="できたステップ">${st.done}/${st.total}</span>`:''}</span>`:''}
     </button>`;
   });
   tiles.splice(4,0,`<button type="button" class="mtile center" data-center="theme" aria-label="${esc(a.name)}のありたい姿を編集"><span class="mt-name">${esc(a.name)}</span><span class="mt-theme">${esc(hasText(a.theme)?a.theme:'ありたい姿を書く')}</span></button>`);
-  return `<div class="life-back"><button type="button" class="pill-btn" id="lifeBack">${ic('left','sm')}全体に戻る</button><b>${esc(a.name)}</b></div><div class="mandala">${tiles.join('')}</div><p class="hint-line">マスをタップすると、夢・期限・状態を編集できます。</p>`;
+  return `<div class="life-back"><button type="button" class="pill-btn" id="lifeBack">${ic('left','sm')}全体に戻る</button><b>${esc(a.name)}</b></div><div class="mandala">${tiles.join('')}</div><p class="hint-line">マスをタップすると、夢・期限・ステップを編集できます。右下の数字は「できたステップ / ステップの数」です。</p>`;
 }
 function lifeTimelineHTML(){
-  const live=allDreams().filter(x=>x.d.status!=='dropped');
-  const dated=live.filter(x=>x.d.deadline).sort((p,q)=>p.d.deadline<q.d.deadline?-1:p.d.deadline>q.d.deadline?1:0);
-  const undated=live.filter(x=>!x.d.deadline&&x.d.status!=='done');
-  if(!live.length)return `<div class="empty-state">${ic('cal')}<br>夢に日付を入れると、ここに年表ができます。</div>`;
+  const today=todayStr(),items=[];
+  allDreams().forEach(x=>{
+    if(x.d.status==='dropped')return;
+    items.push({kind:'dream',area:x.area,i:x.i,sid:'',text:x.d.text,deadline:x.d.deadline,status:x.d.status,sub:x.area.name});
+    const parent=x.d.text.length>22?x.d.text.slice(0,22)+'…':x.d.text;
+    x.d.steps.forEach(s=>{if(hasText(s.text)&&s.status!=='dropped')items.push({kind:'step',area:x.area,i:x.i,sid:s.id,text:s.text,deadline:s.deadline,status:s.status,sub:parent});});
+  });
+  if(!items.length)return `<div class="empty-state">${ic('cal')}<br>夢やステップに日付を入れると、ここに年表ができます。</div>`;
   const by=db.settings.birth_ym?parseInt(db.settings.birth_ym.slice(0,4)):0;
-  const row=x=>{
-    const info=deadlineInfo(x.d.deadline,x.d.status),d=x.d.deadline?parseDate(x.d.deadline):null;
-    return `<button type="button" class="tl-row" data-area="${x.area.id}" data-dream="${x.i}">${d?`<span class="tl-date">${d.getMonth()+1}/${d.getDate()}</span>`:''}<span class="tl-main"><span class="tl-text">${esc(x.d.text)}</span><span class="tl-sub">${esc([x.area.name,info.age,(info.left!=null&&info.left>=0)?'あと'+info.left+'日':''].filter(Boolean).join('・'))}</span></span><span class="dtag ${info.over?'over':x.d.status}">${info.over?'期限超過':dstatusLabel(x.d.status)}</span></button>`;
+  const row=(it,full)=>{
+    const info=deadlineInfo(it.deadline,it.status),d=it.deadline?parseDate(it.deadline):null;
+    return `<button type="button" class="tl-row${it.kind==='step'?' step':''} ${it.status}" data-area="${it.area.id}" data-dream="${it.i}"${it.sid?` data-step="${esc(it.sid)}"`:''}>${d?`<span class="tl-date${full?' full':''}">${full?d.getFullYear()+'/':''}${d.getMonth()+1}/${d.getDate()}</span>`:''}<span class="tl-main"><span class="tl-text">${esc(it.text)}</span><span class="tl-sub">${esc([it.sub,info.age,(info.left!=null&&info.left>=0)?'あと'+info.left+'日':''].filter(Boolean).join('・'))}</span></span><span class="dtag ${info.over?'over':it.status}">${info.over?'期限超過':dstatusLabel(it.status)}</span></button>`;
   };
-  let html='',cur='';
-  dated.forEach(x=>{const y=x.d.deadline.slice(0,4);if(y!==cur){cur=y;html+=`<div class="tl-year">${y}年${by&&parseInt(y)>=by?`<span class="dtag">${parseInt(y)-by}歳になる年</span>`:''}</div>`;}html+=row(x);});
-  if(!dated.length)html+='<p class="info-line">日付の入った夢はまだありません。夢に日付を入れると、ここに年ごとに並びます。</p>';
-  if(undated.length)html+=`<details class="more" style="margin:14px 0 0;"><summary>${ic('cal')}日付のない夢 ${undated.length}件${ic('down','chev')}</summary><div class="inner">${undated.map(row).join('')}</div></details>`;
+  const dated=items.filter(it=>it.deadline).sort((p,q)=>p.deadline<q.deadline?-1:p.deadline>q.deadline?1:(p.kind===q.kind?0:p.kind==='dream'?-1:1));
+  const past=dated.filter(it=>it.deadline<today),coming=dated.filter(it=>it.deadline>=today);
+  const undated=items.filter(it=>it.kind==='dream'&&!it.deadline&&it.status!=='done');
+  let html='';
+  if(past.length){
+    const over=past.filter(it=>deadlineInfo(it.deadline,it.status).over).length;
+    html+=`<details class="more" style="margin:0 0 14px;"><summary>${ic(over?'alert':'check')}${over?`期限を過ぎたもの ${over}件`:`過ぎた日付のもの ${past.length}件`}${ic('down','chev')}</summary><div class="inner">${over?'<p class="info-line" style="margin-bottom:10px;">責めるための一覧ではありません。日付を先へ延ばす・小さくする・やめる、のどれかを選べば十分です。</p>':''}${past.slice().reverse().map(it=>row(it,true)).join('')}</div></details>`;
+  }
+  let cur='';
+  coming.forEach(it=>{const y=it.deadline.slice(0,4);if(y!==cur){cur=y;html+=`<div class="tl-year">${y}年${by&&parseInt(y)>=by?`<span class="dtag">${parseInt(y)-by}歳になる年</span>`:''}</div>`;}html+=row(it,false);});
+  if(!coming.length)html+='<p class="info-line">これから先の日付が入った夢・ステップはまだありません。日付を入れると、ここに年ごとに並びます。</p>';
+  if(undated.length)html+=`<details class="more" style="margin:14px 0 0;"><summary>${ic('cal')}日付のない夢 ${undated.length}件${ic('down','chev')}</summary><div class="inner">${undated.map(it=>row(it,false)).join('')}</div></details>`;
   return html;
 }
-function openDream(areaId,i){
+function openDream(areaId,i,openStepId){
   const a=db.life.areas[areaId];if(!a)return;const d=a.dreams[i];if(!d)return;
+  let openId=openStepId||null,armedDel=null;
   openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
-    <h3>${esc(a.name)}・夢${i+1}</h3><p class="msub">日付を入れると、年表と「その時の年齢」に反映されます。</p>
+    <h3>${esc(a.name)}・夢${i+1}</h3><p class="msub">夢を、日付のついた小さなステップに分けると動き出します。</p>
     <div class="field"><label class="lb" for="dmText">夢・目標</label><textarea id="dmText" maxlength="140" placeholder="例:フルマラソンを完走する" style="min-height:64px;">${esc(d.text)}</textarea></div>
-    <div class="field"><label class="lb" for="dmNote">説明・アクション <span class="hint">任意</span></label><textarea id="dmNote" maxlength="300" style="min-height:56px;">${esc(d.note)}</textarea></div>
     <div class="field"><label class="lb" for="dmDeadline">いつまでに <span class="hint">任意</span></label><input type="date" id="dmDeadline" value="${d.deadline}" style="max-width:220px;"><div class="age-line" id="dmAge"></div></div>
     <div class="field"><span class="lb" id="dmStLb">状態</span><div class="chips" id="dmStatus" role="group" aria-labelledby="dmStLb">${DSTATUS.map(s=>`<button type="button" class="chip" data-st="${s.k}" aria-pressed="${d.status===s.k}">${s.l}</button>`).join('')}</div></div>
+    <div class="field">
+      <div class="steps-head"><span class="lb">ステップ <span class="hint">夢に近づく道のり・${STEP_MAX}つまで</span></span><span class="cnt" id="dmStepCnt"></span></div>
+      <div id="dmSteps"></div>
+      <div class="step-add" id="dmStepAddRow">
+        <input type="text" id="dmStepNew" maxlength="80" placeholder="例:説明会に申し込む" enterkeyhint="done" aria-label="新しいステップ">
+        <input type="date" id="dmStepNewDate" aria-label="新しいステップの期日(任意)">
+        <button type="button" class="btn sub sm" id="dmStepAdd" style="flex:none;">${ic('plus','sm')}ステップを追加</button>
+      </div>
+      <p class="hint-line" id="dmStepHint"></p>
+    </div>
+    <div class="field"><label class="lb" for="dmNote">説明・なぜ叶えたいか <span class="hint">任意</span></label><textarea id="dmNote" maxlength="300" style="min-height:56px;">${esc(d.note)}</textarea></div>
     <div class="autosave-note"><svg class="ic sm" aria-hidden="true"><use href="#i-shield"/></svg>入力すると自動で保存されます</div>
     <div class="btn-row end"><button type="button" class="btn sub sm" id="dmToYear">${ic('arrow','sm')}今年の目標にする</button><button type="button" class="btn" onclick="closeModal()">閉じる</button></div>`,'夢を編集',hasText(d.text)?null:'#dmText');
   const upd=()=>{touchArea(a);scheduleSave();};
   const age=()=>{const info=deadlineInfo(d.deadline,d.status);$('dmAge').textContent=info.text;};age();
+  const drawStatus=()=>{$('dmStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===d.status)));};
+  const stepById=id=>d.steps.find(s=>s.id===id);
+  const drawSteps=()=>{
+    const st=stepStat(d);
+    $('dmStepCnt').textContent=st.total?`${st.done} / ${st.total} できた`:'';
+    $('dmSteps').innerHTML=stepSort(d.steps).map(s=>{
+      const sub=stepSubText(s),open=s.id===openId;
+      return `<div class="step ${s.status}${open?' open':''}" data-step="${esc(s.id)}">
+        <div class="step-row"><button type="button" class="step-check" data-sdone aria-pressed="${s.status==='done'}" aria-label="できたにする"><i>${ic('check','sm')}</i></button>
+          <button type="button" class="step-main" data-sopen aria-expanded="${open}"><span class="step-text">${esc(s.text)}</span><span class="step-sub${sub.over?' over':''}">${esc(sub.text||'タップして日付を入れる')}</span></button>${ic('down','sm')}</div>
+        ${open?`<div class="step-edit">
+          <div class="field"><label class="lb" for="stText">ステップ</label><input type="text" id="stText" maxlength="80" value="${esc(s.text)}"></div>
+          <div class="field"><label class="lb" for="stDate">いつまでに <span class="hint">任意</span></label><input type="date" id="stDate" value="${s.deadline}" style="max-width:220px;"></div>
+          <div class="field"><span class="lb" id="stStLb">状態</span><div class="chips" role="group" aria-labelledby="stStLb">${DSTATUS.map(x=>`<button type="button" class="chip" data-sst="${x.k}" aria-pressed="${s.status===x.k}">${x.l}</button>`).join('')}</div></div>
+          <div class="btn-row" style="margin-top:0;"><button type="button" class="btn sub sm" data-sweek>${ic('arrow','sm')}週の目標に入れる</button><button type="button" class="btn danger sm" data-sdel style="margin-left:auto;">${ic('trash','sm')}${armedDel===s.id?'もう一度押すと削除':'削除'}</button></div>
+        </div>`:''}
+      </div>`;
+    }).join('');
+    const full=d.steps.length>=STEP_MAX;
+    $('dmStepAddRow').hidden=full;
+    $('dmStepHint').textContent=full?`ステップは${STEP_MAX}つまでです。終わったものを削除するか、まとめられないか見直してみましょう。`:(d.steps.length?'':'最初のステップは、今週か今月のうちにできる大きさにするのがコツです。');
+  };
+  const startIfIdle=()=>{if(d.status==='todo'){d.status='doing';drawStatus();age();}};   // ステップが動いたら、夢も「進行中」に
   $('dmText').addEventListener('input',e=>{d.text=e.target.value;upd();});
   $('dmNote').addEventListener('input',e=>{d.note=e.target.value;upd();});
   $('dmDeadline').addEventListener('input',e=>{d.deadline=/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)?e.target.value:'';upd();age();});
-  $('dmStatus').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;d.status=c.dataset.st;$('dmStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===d.status)));upd();age();});
+  $('dmStatus').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;d.status=c.dataset.st;drawStatus();upd();age();});
+  $('dmSteps').addEventListener('click',e=>{
+    const box=e.target.closest('.step');if(!box)return;const s=stepById(box.dataset.step);if(!s)return;
+    if(e.target.closest('[data-sdone]')){s.status=s.status==='done'?'todo':'done';if(s.status==='done')startIfIdle();armedDel=null;upd();drawSteps();return;}
+    if(e.target.closest('[data-sopen]')){openId=openId===s.id?null:s.id;armedDel=null;d.steps=d.steps.filter(x=>hasText(x.text));drawSteps();return;}
+    const stc=e.target.closest('[data-sst]');
+    if(stc){s.status=stc.dataset.sst;if(s.status==='doing'||s.status==='done')startIfIdle();armedDel=null;upd();drawSteps();return;}
+    if(e.target.closest('[data-sweek]')){
+      if(!hasText(s.text)){toast('先にステップを書いてください');return;}
+      const y=new Date().getFullYear(),yg=Object.values(db.year_goals).find(g=>g.year===y&&g.area===a.id&&g.dream===i&&g.status!=='done'&&g.status!=='dropped');
+      const r=pushWeeklyGoal(s.text,yg?yg.id:'');
+      if(r.ok){s.week=r.wk;if(s.status==='todo')s.status='doing';startIfIdle();touchArea(a);saveNow(true);drawSteps();}
+      toast(r.msg);return;
+    }
+    if(e.target.closest('[data-sdel]')){
+      if(armedDel!==s.id){armedDel=s.id;drawSteps();return;}
+      d.steps=d.steps.filter(x=>x.id!==s.id);armedDel=null;openId=null;upd();drawSteps();toast('ステップを削除しました');
+    }
+  });
+  $('dmSteps').addEventListener('input',e=>{
+    const box=e.target.closest('.step');if(!box)return;const s=stepById(box.dataset.step);if(!s)return;
+    if(e.target.id==='stText'){s.text=e.target.value;box.querySelector('.step-text').textContent=s.text;}
+    else if(e.target.id==='stDate'){s.deadline=/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)?e.target.value:'';const sub=stepSubText(s),el=box.querySelector('.step-sub');el.textContent=sub.text||'タップして日付を入れる';el.classList.toggle('over',sub.over);}
+    else return;
+    upd();
+  });
+  const addStep=()=>{
+    const v=$('dmStepNew').value.trim();if(!v){$('dmStepNew').focus();return;}
+    if(d.steps.length>=STEP_MAX)return;
+    const dv=$('dmStepNewDate').value;
+    d.steps.push({id:uid('st'),text:v.slice(0,80),deadline:/^\d{4}-\d{2}-\d{2}$/.test(dv)?dv:'',status:'todo',week:''});
+    $('dmStepNew').value='';$('dmStepNewDate').value='';upd();drawSteps();
+    if(d.steps.length<STEP_MAX)$('dmStepNew').focus();
+  };
+  $('dmStepAdd').onclick=addStep;
+  $('dmStepNew').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();addStep();}});
   $('dmToYear').onclick=()=>{
     if(!hasText(d.text)){toast('先に夢を書いてください');return;}
+    d.steps=d.steps.filter(x=>hasText(x.text));
     flushSave();const id=addYearGoalFromDream(a,i);
     modalOnClose=null;closeModal();goalTab='year';yearCursor=new Date().getFullYear();yearFilter='all';switchScreen('goals');render();openYearGoal(id);
   };
-  modalOnClose=()=>{flushSave();render();};
+  drawSteps();
+  if(openId){const el=$('dmSteps').querySelector('.step.open');if(el)el.scrollIntoView({block:'center'});}
+  modalOnClose=()=>{d.steps=d.steps.filter(x=>hasText(x.text));flushSave();render();};
 }
 function openAreaEdit(areaId){
   const a=db.life.areas[areaId];if(!a)return;
@@ -1842,7 +1989,10 @@ function renderDreamCard(){
   $('dreamLb').textContent=`今日の夢・${x.area.name}`;
   $('dreamText').textContent=x.d.text;
   $('dreamSub').textContent=info.text||dstatusLabel(x.d.status);
-  $('dreamOpen').onclick=()=>openDream(x.area.id,x.i);
+  const ns=nextStep(x.d),se=$('dreamStep');se.hidden=false;
+  if(ns){const si=deadlineInfo(ns.deadline,ns.status);se.textContent=`次のステップ: ${ns.text}${si.date?`(〜${si.date})`:''}`;}
+  else se.textContent=x.d.steps.length?'ステップはすべて完了しています':'タップして、最初のステップを決める';
+  $('dreamOpen').onclick=()=>openDream(x.area.id,x.i,ns?ns.id:undefined);
   $('dreamNext').onclick=()=>{dreamOffset++;renderDreamCard();};
 }
 
@@ -2010,7 +2160,7 @@ function weeklyStreak(text,key){
 async function importPartial(j){
   const L=(j.life&&typeof j.life==='object')?j.life:{},areasIn=Array.isArray(L.areas)?L.areas:[];
   const norm=s=>String(s||'').trim();
-  const plan={mission:false,themes:0,dreams:0,goals:0,birth:false};
+  const plan={mission:false,themes:0,dreams:0,goals:0,birth:false,steps:0};
   const mission=norm(L.mission);
   if(mission&&!hasText(db.life.mission.text))plan.mission=true;
   areasIn.forEach(ai=>{const a=ai&&db.life.areas[ai.id];if(!a)return;if(hasText(ai.theme)&&!hasText(a.theme))plan.themes++;(Array.isArray(ai.dreams)?ai.dreams:[]).slice(0,8).forEach((d,i)=>{if(d&&hasText(d.text)&&!hasText(a.dreams[i].text))plan.dreams++;});});
@@ -2019,8 +2169,19 @@ async function importPartial(j){
   const newGoals=goalsIn.filter(g=>!exists(g));plan.goals=newGoals.length;
   const birth=(j.settings&&/^\d{4}-\d{2}$/.test(j.settings.birth_ym||''))?j.settings.birth_ym:'';
   if(birth&&!db.settings.birth_ym)plan.birth=true;
-  if(!plan.mission&&!plan.themes&&!plan.dreams&&!plan.goals&&!plan.birth){toast('新しく取り込める項目はありませんでした(取り込み済みです)');return;}
-  const ok=await confirmDialog({title:'この内容を追加で取り込みますか?',body:`${plan.mission?'・自分の未来(ミッション)\n':''}・分野のありたい姿 ${plan.themes}件\n・夢 ${plan.dreams}件\n・年間目標 ${plan.goals}件${plan.birth?'\n・生まれた年月(年齢の表示用)':''}\n\nいまの記録は消えません。すでに入力済みの欄は上書きしません。`,ok:'取り込む'});
+  // 夢のステップ:同じ文の夢にだけ、まだ無いステップを足す(空のマスは夢ごと取り込むので対象外)
+  const stepPlan=[];let stepSkip=0;
+  areasIn.forEach(ai=>{const a=ai&&db.life.areas[ai.id];if(!a)return;(Array.isArray(ai.dreams)?ai.dreams:[]).slice(0,8).forEach((d,i)=>{
+    if(!d||!hasText(d.text))return;const inc=normalizeSteps(d.steps);if(!inc.length||!hasText(a.dreams[i].text))return;
+    const ti=norm(a.dreams[i].text)===norm(d.text)?i:a.dreams.findIndex(x=>norm(x.text)===norm(d.text));
+    if(ti<0){stepSkip+=inc.length;return;}
+    const cur=a.dreams[ti].steps,have=new Set(cur.map(x=>norm(x.text)));
+    const add=inc.filter(x=>!have.has(norm(x.text))).slice(0,Math.max(0,STEP_MAX-cur.length));
+    if(add.length)stepPlan.push({a,ti,add});
+  });});
+  plan.steps=stepPlan.reduce((n,p)=>n+p.add.length,0);
+  if(!plan.mission&&!plan.themes&&!plan.dreams&&!plan.goals&&!plan.birth&&!plan.steps){toast('新しく取り込める項目はありませんでした(取り込み済みです)');return;}
+  const ok=await confirmDialog({title:'この内容を追加で取り込みますか?',body:`${plan.mission?'・自分の未来(ミッション)\n':''}・分野のありたい姿 ${plan.themes}件\n・夢 ${plan.dreams}件\n・夢のステップ ${plan.steps}件${stepSkip?`(夢の文が変わっているため見送り ${stepSkip}件)`:''}\n・年間目標 ${plan.goals}件${plan.birth?'\n・生まれた年月(年齢の表示用)':''}\n\nいまの記録は消えません。すでに入力済みの欄は上書きしません。`,ok:'取り込む'});
   if(!ok)return;
   flushSave();snapshotCurrent('manual');
   const now=new Date().toISOString();
@@ -2032,12 +2193,13 @@ async function importPartial(j){
     (Array.isArray(ai.dreams)?ai.dreams:[]).slice(0,8).forEach((d,i)=>{if(d&&hasText(d.text)&&!hasText(a.dreams[i].text)){a.dreams[i]=normalizeDream(d);ch=true;}});
     if(ch)a.updated_at=now;
   });
+  stepPlan.forEach(p=>{p.a.dreams[p.ti].steps.push(...p.add);p.a.updated_at=now;});
   let order=Object.values(db.year_goals).reduce((m,g)=>Math.max(m,g.order),0);
   newGoals.forEach(g=>{const id=uid('yg');db.year_goals[id]=normalizeYearGoal(Object.assign({},g,{id,order:++order,created_at:now,updated_at:now}));});
   if(plan.birth){db.settings.birth_ym=birth;touchSettings();}
   saveNow(true);
   goalTab='life';lifeArea=null;lifeView='mandala';switchScreen('goals');render();
-  toast(`取り込みました(夢 ${plan.dreams}件・年間目標 ${plan.goals}件)`);
+  toast(`取り込みました(夢 ${plan.dreams}件・ステップ ${plan.steps}件・年間目標 ${plan.goals}件)`);
 }
 
 function renderWeekSummary(){
@@ -2392,7 +2554,7 @@ async function syncNow(manual){
       const needLocal=canon(merged)!==canon(local);
       const needRemote=canon(merged)!==canon(syncView(row.data||{}));
       if(needLocal){
-        if(mutSeq!==seq||dirty){retryLater=true;break;}   // 通信中に入力があった → いまは反映せず、少しあとでやり直す
+        if(mutSeq!==seq||dirty||$('modalBg').classList.contains('show')){retryLater=true;break;}   // 通信中に入力があった → いまは反映せず、少しあとでやり直す
         applyMerged(merged);
       }
       if(needRemote){const ok=await cloudDb.update(uid,merged,row.version);if(!ok)continue;}   // 別の端末が先に更新 → 読み直して合流
@@ -2415,7 +2577,7 @@ async function syncNow(manual){
     if(syncQueued){syncQueued=false;syncSoon(3000);}
   }
 }
-function refreshCloudUI(){updateSaveStatus();renderCloud();renderCoach();const w=$('infoWhere');if(w)w.textContent=cloud.user?`この端末 + クラウド(${cloud.user.email||'ログイン中'})`:'この端末のブラウザ内(他の端末とは共有されません)';}
+function refreshCloudUI(){updateSaveStatus();renderCloud();renderCoach();const sw=$('sideWhere');if(sw)sw.textContent=cloud.user?'データはこの端末とクラウドに保存されます':'データはこの端末のブラウザ内に保存されます';const w=$('infoWhere');if(w)w.textContent=cloud.user?`この端末 + クラウド(${cloud.user.email||'ログイン中'})`:'この端末のブラウザ内(他の端末とは共有されません)';}
 function renderCloud(){
   const body=$('cloudBody');if(!body)return;
   const st=!cloudConfigured()?'A':(cloud.user?'C':'B');
@@ -2475,7 +2637,7 @@ function buildCoachPayload(){
     const p=goalProgress(type,key,x.i);
     return clean({text:x.it.text,rating:gLabel(x.it.status),review:x.it.review,days_worked:p.worked||null,days_achieved:p.achieved||null,weeks_in_a_row:type==='weekly'?weeklyStreak(x.it.text,key):null,year_goal:ygText(x.it.parent)});
   });
-  const life=clean({mission:db.life.mission.text,areas:lifeAreas().map(a=>clean({name:a.name,ideal:a.theme,dreams:a.dreams.filter(d=>hasText(d.text)).map(d=>clean({text:d.text,status:dstatusLabel(d.status),deadline:d.deadline}))})).filter(a=>a.ideal||a.dreams)});
+  const life=clean({mission:db.life.mission.text,areas:lifeAreas().map(a=>clean({name:a.name,ideal:a.theme,dreams:a.dreams.filter(d=>hasText(d.text)).map(d=>clean({text:d.text,status:dstatusLabel(d.status),deadline:d.deadline,steps:stepSort(d.steps.filter(s=>hasText(s.text)&&stepOpen(s))).map(s=>clean({text:s.text,deadline:s.deadline,status:s.status==='todo'?'':dstatusLabel(s.status)})),steps_done:d.steps.filter(s=>s.status==='done').length||null}))})).filter(a=>a.ideal||a.dreams)});
   const year_goals=yearGoalsOf(y).map(g=>{
     const r=yearGoalRollup(g.id);
     return clean({text:g.text,why:cut(g.motive,160),plan:cut(g.detail,220),area:g.area?db.life.areas[g.area].name:'',status:dstatusLabel(g.status),end:g.end,actions:g.actions.filter(a=>hasText(a.text)).map(a=>a.text+(a.done?'(できた)':'')),notes:g.logs.slice(-3).map(l=>`${l.d} ${l.text}`),linked_goals:r.items||null,days_worked:r.worked||null,result:cut(g.result,160)});
@@ -2495,6 +2657,10 @@ function buildCoachPayload(){
     return{name:h.name,frequency:scheduleLabel(h),last_14_days:`${done}/${sched}`,total:habitTotal(h.id)};
   });
   return clean({today:t,weekday:WD_JP[parseDate(t).getDay()],age:ageAt(t),life:Object.keys(life).length?life:null,year_goals,monthly_goals,weekly_goals,daily_records,habits});
+}
+function modelLabel(id){   // 例: claude-opus-5-5 → AI: Claude Opus 5.5
+  const m=/^claude-([a-z]+)-(\d+)(?:-(\d{1,2}))?(?:-\d{6,})?$/.exec(String(id||''));
+  return m?`AI: Claude ${m[1].charAt(0).toUpperCase()+m[1].slice(1)} ${m[2]}${m[3]?'.'+m[3]:''}`:(id?`AI: ${id}`:'');
 }
 function coachReportsSorted(){return Object.values(db.coach_reports).sort((p,q)=>p.created_at<q.created_at?1:-1);}
 function coachCostText(r){   // 使用量と、費用の目安(Opus 5.5 の単価: 入力$4・出力$20/100万トークン、1ドル150円で計算)
@@ -2547,7 +2713,7 @@ function coachReportHTML(r){
   if(typeof rep.one_focus==='string'&&rep.one_focus.trim())html+=`<div class="card"><div class="coach-focus"><small>1つだけ意識するなら</small>${esc(rep.one_focus)}</div></div>`;
   if(typeof rep.question==='string'&&rep.question.trim())html+=`<div class="card"><div class="coach-box"><div class="who">${ic('spark','sm')}コーチからの問い</div>${esc(rep.question)}</div></div>`;
   const cost=coachCostText(r);
-  html+=`<p class="hint-line" style="margin:-4px 0 16px;">${esc([r.model,cost,r.truncated?'途中で長さの上限に達しました':''].filter(Boolean).join('・'))}</p>`;
+  html+=`<p class="hint-line" style="margin:-4px 0 16px;">${esc([modelLabel(r.model),cost,r.truncated?'途中で長さの上限に達しました':''].filter(Boolean).join('・'))}</p>`;
   return html;
 }
 function renderCoach(){
@@ -2565,13 +2731,9 @@ function renderCoach(){
 function coachAddToWeek(i){
   const r=coachSel&&db.coach_reports[coachSel];if(!r)return;
   const item=(Array.isArray(r.report.next_week)?r.report.next_week:[])[i];if(typeof item!=='string'||!item.trim())return;
-  const t=todayStr(),cur=mondayOf(t),wk=daysBetween(cur,t)>=4?addDays(cur,7):cur;
-  const g=normalizeGoal(db.goals.weekly[wk]),tx=item.trim().slice(0,60);
-  if(g.items.some(it=>it.text.trim()===tx)){toast('すでに週の目標に入っています');return;}
-  const idx=g.items.findIndex(it=>!hasText(it.text));
-  if(idx<0){toast(`${wk===cur?'今週':'来週'}の目標は5つ埋まっています`);return;}
-  g.items[idx]={text:tx,review:'',status:'',parent:''};g.period_key=wk;g.updated_at=new Date().toISOString();db.goals.weekly[wk]=g;
-  saveNow(true);toast(`${wk===cur?'今週':'来週'}の目標に入れました${item.trim().length>60?'(長いので60文字にしています)':''}`);
+  const res=pushWeeklyGoal(item,'');
+  if(res.ok)saveNow(true);
+  toast(res.msg);
 }
 
 /* ---- coach(簡易版:記録に応じた定型メッセージ) ---- */
@@ -2736,7 +2898,7 @@ function init(){
     if(v){lifeView=v.dataset.lview;renderLife();return;}
     if(ev.target.closest('#lifeBack')){lifeArea=null;renderLife();return;}
     const tl=ev.target.closest('.tl-row');
-    if(tl){openDream(tl.dataset.area,parseInt(tl.dataset.dream));return;}
+    if(tl){openDream(tl.dataset.area,parseInt(tl.dataset.dream),tl.dataset.step||undefined);return;}
     const t=ev.target.closest('.mtile');if(!t)return;
     if(t.dataset.center==='mission'){$('lifeMission').focus();$('lifeMission').scrollIntoView({block:'center',behavior:'smooth'});return;}
     if(t.dataset.center==='theme'){openAreaEdit(lifeArea);return;}
