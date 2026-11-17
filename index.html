@@ -378,6 +378,40 @@
   .mt-footrow .mt-foot{flex:1;min-width:0;flex-shrink:1;}
   .mt-steps{font-size:11px;font-weight:700;color:var(--green-ink);flex-shrink:0;}
   .dream-card .dc-step{color:var(--primary-dark);font-weight:600;margin-top:2px;}
+  /* イメージ画像 */
+  .imgf-view img{display:block;width:100%;max-height:200px;min-height:80px;object-fit:cover;border-radius:12px;background:#eef1f6;}
+  .imgf-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+  .imgf-add{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;border:1.5px dashed #c3cbd9;border-radius:12px;background:#fbfcfe;color:var(--primary-dark);padding:12px;text-align:center;min-height:64px;justify-content:center;}
+  .imgf-add:hover{border-color:var(--primary);background:var(--primary-soft);}
+  .imgf-add b{font-size:14px;display:inline-flex;align-items:center;gap:6px;} .imgf-add small{font-size:12px;color:var(--sub);font-weight:400;}
+  .mtile.img-on{background-size:cover;background-position:center;position:relative;}
+  .mtile.img-on::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.08) 0%,rgba(15,23,42,.8) 100%);}
+  .mtile.img-on>*{position:relative;}
+  .mtile.img-on .mt-text,.mtile.img-on .mt-theme{color:#fff;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.65);flex:none;margin-top:auto;-webkit-line-clamp:3;}
+  .mtile.img-on .mt-name{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.65);}
+  .mtile.img-on .mt-foot,.mtile.img-on .mt-foot.over,.mtile.img-on .mt-steps{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.65);}
+  .mtile.center.img-on .mt-theme{margin-top:0;}
+  .vboard{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+  .vb-card{position:relative;aspect-ratio:4/3;border:none;border-radius:14px;overflow:hidden;background:#dfe5ef;padding:0;text-align:left;display:block;width:100%;}
+  .vb-card:hover{box-shadow:0 4px 14px rgba(15,23,42,.18);}
+  .vb-img{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .vb-cap{position:absolute;left:0;right:0;bottom:0;padding:24px 10px 8px;background:linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,.82));color:#fff;font-size:12.5px;font-weight:700;line-height:1.4;}
+  .vb-cap small{display:block;font-size:10.5px;opacity:.85;font-weight:600;}
+  .vb-cap .vb-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word;}
+  .dream-card{flex-wrap:wrap;}
+  .dream-card .dc-img{display:none;flex:1 1 100%;height:150px;border:none;border-radius:12px;background:#dfe5ef center/cover no-repeat;padding:0;}
+  .dream-card .dc-img.img-on{display:block;}
+  /* 期限の見直し */
+  .ov-nudge{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:12px;padding:8px 8px 8px 14px;margin-bottom:12px;font-size:13.5px;color:#7c3a03;font-weight:600;}
+  .ov-nudge button{margin-left:auto;border:1px solid var(--amber);background:#fff;color:var(--amber);font-weight:700;font-size:13px;border-radius:99px;padding:0 14px;min-height:36px;}
+  .ov-prog{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;color:var(--sub);margin-bottom:10px;}
+  .ov-bar{flex:1;height:6px;border-radius:99px;background:#e6ebf3;overflow:hidden;} .ov-bar i{display:block;height:100%;background:var(--primary);border-radius:99px;transition:width .2s;}
+  .ov-card{border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:12px;padding:12px 14px;margin-bottom:14px;background:#fff;}
+  .ov-card small{display:block;font-size:12px;color:var(--sub);font-weight:600;word-break:break-word;}
+  .ov-card b{display:block;font-size:16px;line-height:1.5;margin:2px 0;word-break:break-word;}
+  .ov-card .ov-date{font-size:12.5px;color:var(--amber);font-weight:700;}
+  .ov-lb{font-size:12.5px;font-weight:700;color:var(--primary-ink);margin:12px 0 6px;}
+  .ov-end{text-align:center;padding:10px 0 4px;} .ov-end .ic{color:var(--green);} .ov-end b{display:block;font-size:17px;margin:4px 0 6px;}
   .stale{background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:10px;padding:8px 10px;margin-bottom:8px;font-size:13px;color:#7c3a03;}
   .stale .btn-row{margin-top:6px;gap:6px;}
   .goal-parent{font-size:13.5px!important;margin-top:8px;color:var(--sub);}
@@ -545,7 +579,7 @@
       <div class="sep" role="presentation"></div>
       <button type="button" data-screen="settings"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg>設定・データ</button>
     </nav>
-    <div class="side-foot">試用版 0.6<br><span id="sideWhere">データはこの端末のブラウザ内に保存されます</span></div>
+    <div class="side-foot">試用版 0.7<br><span id="sideWhere">データはこの端末のブラウザ内に保存されます</span></div>
   </aside>
 
   <main>
@@ -588,6 +622,7 @@
         </div>
 
         <div class="card dream-card" id="dreamCard" hidden>
+          <button type="button" class="dc-img" id="dreamImg" aria-label="この夢を開く"></button>
           <button type="button" class="dc-main" id="dreamOpen">
             <span class="dc-lb" id="dreamLb"></span>
             <span class="dc-text" id="dreamText"></span>
@@ -800,9 +835,11 @@
               <div class="chips" id="lifeView" role="group" aria-label="表示の切り替え">
                 <button type="button" class="chip" data-lview="mandala" aria-pressed="true">マンダラ</button>
                 <button type="button" class="chip" data-lview="timeline" aria-pressed="false">年表</button>
+                <button type="button" class="chip" data-lview="board" aria-pressed="false">ボード</button>
               </div>
               <span class="count" id="lifeCount"></span>
             </div>
+            <div class="ov-nudge" id="lifeOverdue" hidden><span id="lifeOverdueText"></span><button type="button" id="lifeOverdueBtn">1件ずつ見直す</button></div>
             <div id="lifeBody"></div>
           </div>
         </div>
@@ -932,7 +969,7 @@
             <input type="month" id="birthYm" placeholder="1985-04" style="max-width:220px;">
           </div>
           <div class="btn-row" style="margin-top:0;"><button type="button" class="btn ghost sm" id="guideAgain">はじめのガイドをもう一度表示</button></div>
-          <p class="hint-line">Good 3 More 試用版 0.6</p>
+          <p class="hint-line">Good 3 More 試用版 0.7</p>
         </div>
 
         <div class="card danger-zone">
@@ -961,16 +998,17 @@
 
 <script>
 /* =========================================================
-   Good 3 More — 試用版 0.6 (single file / local storage)
+   Good 3 More — 試用版 0.7 (single file / local storage)
    ・データ保存キーは v1 から変更なし(既存の記録をそのまま読み込みます)
    ・移行は「項目を足すだけ」の非破壊方式
    ========================================================= */
 const STORE_KEY='good3more:v1';
 const SNAP_KEY='good3more:snapshots';
-const SCHEMA_VERSION=5;
+const SCHEMA_VERSION=6;
 const SNAP_AUTO_MAX=12, SNAP_DAILY_MAX=14, SNAP_MANUAL_MAX=6, AUTO_MIN_GAP=10*60*1000;
 const HABIT_MAX=20;
 const STEP_MAX=8;   // 夢1つにつけられるステップの数
+const IMG_BUCKET='g3m-images', IMG_MAX=900, IMG_KEEP_MS=30*86400000;   // 画像の保管先・長辺の上限・使われなくなった画像を残す期間
 const WD_JP=['日','月','火','水','木','金','土'];
 const GSTATUS=[{k:'done',sym:'◎',l:'達成'},{k:'mostly',sym:'○',l:'ほぼ'},{k:'partial',sym:'△',l:'一部'},{k:'none',sym:'×',l:'未達'}];
 // 夢・年間目標の状態(長く付き合う目標なので「継続」「中止」も持つ)
@@ -992,7 +1030,7 @@ let yearCursor=new Date().getFullYear(), yearFilter='all';
 let lifeView='mandala', lifeArea=null, dreamOffset=0;
 let coachBusy=false, coachMsg='', coachSel=null;
 let lastSaved=null, saveTimer=null, dirty=false, saveError=false, externalChange=false;
-let lastFocus=null, modalResolver=null, modalOnClose=null;
+let lastFocus=null, modalResolver=null, modalOnClose=null, modalPaste=null;
 
 const $=id=>document.getElementById(id);
 const ic=(n,c='')=>`<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -1022,7 +1060,7 @@ function normalizeSteps(a){
   return (Array.isArray(a)?a:[]).filter(x=>x&&typeof x==='object'&&typeof x.text==='string'&&x.text.trim()!=='').slice(0,STEP_MAX)
     .map(x=>({id:String(x.id||uid('st')),text:String(x.text),deadline:dt(x.deadline),status:DSTATUS.some(s=>s.k===x.status)?x.status:'todo',week:String(x.week||'')}));
 }
-function normalizeDream(d){d=(d&&typeof d==='object')?d:{};return{text:String(d.text||''),note:String(d.note||''),deadline:/^\d{4}-\d{2}-\d{2}$/.test(d.deadline||'')?d.deadline:'',status:DSTATUS.some(s=>s.k===d.status)?d.status:'todo',steps:normalizeSteps(d.steps)};}
+function normalizeDream(d){d=(d&&typeof d==='object')?d:{};return{text:String(d.text||''),note:String(d.note||''),deadline:/^\d{4}-\d{2}-\d{2}$/.test(d.deadline||'')?d.deadline:'',status:DSTATUS.some(s=>s.k===d.status)?d.status:'todo',steps:normalizeSteps(d.steps),image:String(d.image||'')};}
 function normalizeLife(l){
   l=(l&&typeof l==='object')?l:{};
   const m=(l.mission&&typeof l.mission==='object')?l.mission:{};
@@ -1033,7 +1071,7 @@ function normalizeLife(l){
     const dreams=(Array.isArray(a.dreams)?a.dreams:[]).map(normalizeDream);
     while(dreams.length<8)dreams.push(normalizeDream(null));
     const th=normalizeDream({deadline:a.theme_deadline,status:a.theme_status});
-    areas[id]={id,order:i,name:String(a.name||LIFE_AREA_NAMES[i]),theme:String(a.theme||''),theme_deadline:th.deadline,theme_status:th.status,dreams:dreams.slice(0,8),updated_at:a.updated_at||''};
+    areas[id]={id,order:i,name:String(a.name||LIFE_AREA_NAMES[i]),theme:String(a.theme||''),theme_deadline:th.deadline,theme_status:th.status,image:String(a.image||''),dreams:dreams.slice(0,8),updated_at:a.updated_at||''};
   });
   return{mission:{text:String(m.text||''),updated_at:m.updated_at||''},areas};
 }
@@ -1811,15 +1849,224 @@ function pushWeeklyGoal(text,parent,wk){
   return{ok:true,wk,msg:`${label}の目標に入れました${raw.length>60?'(長いので60文字にしています)':''}`};
 }
 
+/* =========================================================
+   イメージ画像
+   画像そのものは、記録の本体(JSON)とは別に、ブラウザ内の保管庫(IndexedDB)へ置く。
+   ログイン中は、本人だけが読める保管庫(クラウド)にも写しを置き、別の端末で開いたときに取りに行く。
+   記録の本体が持つのは画像のIDだけなので、保存や同期が重くならない。
+   ========================================================= */
+let imgDbP=null;
+function imgDb(){
+  if(!imgDbP)imgDbP=new Promise((res,rej)=>{
+    try{const rq=indexedDB.open('good3more-images',1);
+      rq.onupgradeneeded=()=>{if(!rq.result.objectStoreNames.contains('img'))rq.result.createObjectStore('img',{keyPath:'id'});};
+      rq.onsuccess=()=>res(rq.result);rq.onerror=()=>rej(rq.error||new Error('idb'));
+    }catch(e){rej(e);}
+  });
+  return imgDbP;
+}
+function imgTx(mode,fn){return imgDb().then(dbi=>new Promise((res,rej)=>{const tx=dbi.transaction('img',mode),rq=fn(tx.objectStore('img'));tx.oncomplete=()=>res(rq?rq.result:undefined);tx.onerror=()=>rej(tx.error);tx.onabort=()=>rej(tx.error||new Error('abort'));}));}
+const imgGet=id=>imgTx('readonly',st=>st.get(id));
+const imgPut=rec=>imgTx('readwrite',st=>st.put(rec));
+const imgDel=id=>imgTx('readwrite',st=>st.delete(id));
+const imgAll=()=>imgTx('readonly',st=>st.getAll());
+// 選んだ画像を、長辺900pxまでのJPEGに整える(元の大きな写真は保存しない)
+async function fileToJpeg(file){
+  if(!file)throw new Error('decode');
+  let src;
+  try{src=await createImageBitmap(file,{imageOrientation:'from-image'});}
+  catch(e){src=await new Promise((res,rej)=>{const im=new Image(),u=URL.createObjectURL(file);im.onload=()=>{URL.revokeObjectURL(u);res(im);};im.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('decode'));};im.src=u;});}
+  const w0=src.width||src.naturalWidth,h0=src.height||src.naturalHeight;
+  if(!w0||!h0)throw new Error('decode');
+  const k=Math.min(1,IMG_MAX/Math.max(w0,h0)),w=Math.max(1,Math.round(w0*k)),h=Math.max(1,Math.round(h0*k));
+  const c=document.createElement('canvas');c.width=w;c.height=h;
+  const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.drawImage(src,0,0,w,h);
+  if(src.close)src.close();
+  const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',0.8));
+  if(!blob)throw new Error('encode');
+  return blob;
+}
+const imgUrls=new Map(), imgPending=new Map(), imgMissing=new Set();
+async function imgUrl(id){
+  if(!id)return '';
+  if(imgUrls.has(id))return imgUrls.get(id);
+  if(imgPending.has(id))return imgPending.get(id);
+  const p=(async()=>{
+    let rec=null;try{rec=await imgGet(id);}catch(e){}
+    if((!rec||!rec.blob)&&cloud.user&&cloud.client&&!imgMissing.has(id)){   // この端末に無ければ、クラウドの保管庫から取ってくる
+      try{
+        const{data,error}=await cloud.client.storage.from(IMG_BUCKET).download(`${cloud.user.id}/${id}.jpg`);
+        if(!error&&data){rec={id,blob:data,synced:true,created_at:new Date().toISOString()};try{await imgPut(rec);}catch(e){}}
+        else imgMissing.add(id);
+      }catch(e){}
+    }
+    if(!rec||!rec.blob)return '';
+    const u=URL.createObjectURL(rec.blob);imgUrls.set(id,u);return u;
+  })();
+  imgPending.set(id,p);
+  try{return await p;}finally{imgPending.delete(id);}
+}
+// data-img="画像ID" を持つ要素に、画像を当てはめる(読めたものだけ img-on が付く)
+function hydrateImages(root){
+  (root||document).querySelectorAll('[data-img]').forEach(el=>{
+    const id=el.dataset.img;if(!id||el.dataset.imgOk===id)return;
+    const apply=u=>{if(!u||el.dataset.img!==id)return;if(el.tagName==='IMG')el.src=u;else el.style.backgroundImage=`url("${u}")`;el.dataset.imgOk=id;el.classList.add('img-on');};
+    if(imgUrls.has(id))apply(imgUrls.get(id));else imgUrl(id).then(apply).catch(()=>{});
+  });
+}
+function setImgTarget(el,id){el.classList.remove('img-on');delete el.dataset.imgOk;if(el.tagName==='IMG')el.removeAttribute('src');else el.style.backgroundImage='';if(id)el.dataset.img=id;else delete el.dataset.img;}
+function imageRefs(){const st=new Set();Object.values(db.life.areas).forEach(a=>{if(a.image)st.add(a.image);a.dreams.forEach(d=>{if(d.image)st.add(d.image);});});return st;}
+// まだクラウドに置いていない画像を送る。使われなくなって30日たった画像は片づける
+let imgSyncBusy=false;
+async function syncImages(){
+  if(imgSyncBusy)return;imgSyncBusy=true;
+  try{
+    let all;try{all=await imgAll();}catch(e){return;}
+    const refs=imageRefs(),now=Date.now(),online=!!(cloud.user&&cloud.client);
+    const bucket=online?cloud.client.storage.from(IMG_BUCKET):null,dir=online?cloud.user.id:'';
+    for(const r of all){
+      if(refs.has(r.id)){
+        if(r.orphan_at){delete r.orphan_at;try{await imgPut(r);}catch(e){}}
+        if(online&&!r.synced&&r.blob){
+          try{const{error}=await bucket.upload(`${dir}/${r.id}.jpg`,r.blob,{contentType:'image/jpeg',upsert:false});
+            if(!error||/exist|duplicate/i.test(String(error.message||''))||String(error.statusCode||'')==='409'){r.synced=true;try{await imgPut(r);}catch(e){}}
+          }catch(e){}
+        }
+      }else if(!r.orphan_at){r.orphan_at=new Date().toISOString();try{await imgPut(r);}catch(e){}}
+      else if(now-tsOf(r.orphan_at)>IMG_KEEP_MS){
+        try{await imgDel(r.id);}catch(e){}
+        if(online&&r.synced){try{await bucket.remove([`${dir}/${r.id}.jpg`]);}catch(e){}}
+      }
+    }
+    if(online){imgMissing.clear();hydrateImages();}
+  }catch(e){}finally{imgSyncBusy=false;}
+}
+// 画像を入れる欄(夢・分野の編集で共通)
+function imageFieldHTML(p){
+  return `<div class="field imgf" id="${p}Box">
+    <div class="imgf-view" id="${p}View" hidden><img id="${p}Img" alt="イメージ画像"><div class="imgf-acts"><button type="button" class="btn sub sm" id="${p}Change">${ic('sync','sm')}画像を変える</button><button type="button" class="btn ghost sm" id="${p}Remove">${ic('x','sm')}外す</button></div></div>
+    <button type="button" class="imgf-add" id="${p}Add"><b>${ic('plus','sm')}イメージ画像を入れる</b><small>叶った場面が目に浮かぶ1枚を。パソコンでは貼り付け(Ctrl+V / ⌘V)もできます</small></button>
+    <input type="file" id="${p}File" accept="image/*" hidden>
+    <p class="hint-line" id="${p}Msg" role="status" aria-live="polite"></p>
+  </div>`;
+}
+function bindImageField(p,get,set){
+  const draw=()=>{const id=get();$(p+'View').hidden=!id;$(p+'Add').hidden=!!id;setImgTarget($(p+'Img'),id);if(id)hydrateImages($(p+'Box'));};
+  const take=async file=>{
+    if(!file||!$(p+'Msg'))return;
+    $(p+'Msg').textContent='画像を準備しています…';
+    try{
+      const blob=await fileToJpeg(file),id=uid('img');
+      await imgPut({id,blob,synced:false,created_at:new Date().toISOString()});
+      set(id);
+      if($(p+'Msg')){$(p+'Msg').textContent='';draw();}
+    }catch(e){
+      if($(p+'Msg'))$(p+'Msg').textContent=(e&&e.message==='decode')?'この画像は読み込めませんでした。JPEGかPNGの画像でお試しください。':'画像を保存できませんでした。ブラウザの設定(プライベート表示など)で保存が止められているかもしれません。';
+    }
+  };
+  $(p+'Add').onclick=()=>$(p+'File').click();
+  $(p+'Change').onclick=()=>$(p+'File').click();
+  $(p+'File').onchange=e=>{const f=e.target.files&&e.target.files[0];e.target.value='';take(f);};
+  $(p+'Remove').onclick=()=>{set('');draw();};   // 画像そのものは30日残すので、「以前の状態に戻す」で戻せる
+  const box=$(p+'Box');
+  box.addEventListener('dragover',e=>{e.preventDefault();});
+  box.addEventListener('drop',e=>{e.preventDefault();const f=[...((e.dataTransfer&&e.dataTransfer.files)||[])].find(x=>/^image\//.test(x.type));if(f)take(f);});
+  modalPaste=e=>{const it=[...((e.clipboardData&&e.clipboardData.items)||[])].find(x=>x.kind==='file'&&/^image\//.test(x.type));if(it){e.preventDefault();take(it.getAsFile());}};
+  draw();
+}
+function lifeBoardHTML(){
+  const cards=[];
+  lifeAreas().forEach(a=>{
+    if(a.image)cards.push(`<button type="button" class="vb-card" data-area="${a.id}"><span class="vb-img" data-img="${esc(a.image)}"></span><span class="vb-cap"><small>${esc(a.name)}・ありたい姿</small><span class="vb-t">${esc(hasText(a.theme)?a.theme:a.name)}</span></span></button>`);
+    a.dreams.forEach((d,i)=>{if(d.image&&hasText(d.text)&&d.status!=='dropped')cards.push(`<button type="button" class="vb-card" data-area="${a.id}" data-dream="${i}"><span class="vb-img" data-img="${esc(d.image)}"></span><span class="vb-cap"><small>${esc(a.name)}</small><span class="vb-t">${esc(d.text)}</span></span></button>`);});
+  });
+  if(!cards.length)return `<div class="empty-state">${ic('spark')}<br>夢に画像を入れると、ここに1枚のボードとして並びます。<br>マンダラで夢のマスを開き、「イメージ画像を入れる」から追加できます。</div>`;
+  return `<div class="vboard">${cards.join('')}</div><p class="hint-line">毎日ながめるためのボードです。画像をタップすると、その夢が開きます。</p>`;
+}
+
+/* ---- 期限を過ぎたものを、1件ずつ見直す ---- */
+function overdueItems(){
+  const out=[];
+  allDreams().forEach(x=>{
+    if(deadlineInfo(x.d.deadline,x.d.status).over)out.push({kind:'dream',area:x.area,obj:x.d,parent:''});
+    x.d.steps.forEach(st=>{if(hasText(st.text)&&deadlineInfo(st.deadline,st.status).over)out.push({kind:'step',area:x.area,obj:st,parent:x.d.text});});
+  });
+  return out;
+}
+function openOverdueReview(){
+  flushSave();
+  const items=overdueItems();
+  if(!items.length){toast('期限を過ぎたものはありません');return;}
+  let pos=0,snapped=false,batch=0;const hist=[];
+  const monthsLater=n=>{const d=parseDate(todayStr()),day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+n);d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()));return fmtDate(d);};
+  const ACTS={m1:{l:'1か月後',date:()=>monthsLater(1)},m3:{l:'3か月後',date:()=>monthsLater(3)},m6:{l:'半年後',date:()=>monthsLater(6)},m12:{l:'1年後',date:()=>monthsLater(12)},
+    done:{l:'できた',status:'done'},ongoing:{l:'継続中にする',status:'ongoing'},undate:{l:'日付を外す',date:()=>''},drop:{l:'やめる',status:'dropped'}};
+  const change=(it,act,b,customDate)=>{
+    if(!snapped){snapshotCurrent('manual');snapped=true;}   // 始める前の状態を控える
+    hist.push({it,deadline:it.obj.deadline,status:it.obj.status,act,b});
+    if(customDate!==undefined)it.obj.deadline=customDate;
+    else{const a=ACTS[act];if(a.date)it.obj.deadline=a.date();if(a.status)it.obj.status=a.status;}
+    touchArea(it.area);
+  };
+  const undo=()=>{
+    if(!hist.length)return;const b=hist[hist.length-1].b;
+    while(hist.length&&hist[hist.length-1].b===b){const h=hist.pop();if(!h.skip){h.it.obj.deadline=h.deadline;h.it.obj.status=h.status;touchArea(h.it.area);}pos--;}
+    scheduleSave();draw();
+  };
+  openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
+    <h3>期限を過ぎたものを見直す</h3><p class="msub">1件ずつ、いまの気持ちに近いものを1つ選ぶだけです。責めるための時間ではありません。</p>
+    <div id="ovBody"></div>`,'期限の見直し',null);
+  function draw(){
+    const box=$('ovBody');if(!box)return;
+    if(pos>=items.length){
+      const n=f=>hist.filter(h=>!h.skip&&f(h.act)).length;
+      const parts=[[n(a=>/^m\d+$|^custom$/.test(a)),'先へ送った'],[n(a=>a==='done'),'できた'],[n(a=>a==='ongoing'),'継続中にした'],[n(a=>a==='undate'),'日付を外した'],[n(a=>a==='drop'),'やめた'],[hist.filter(h=>h.skip).length,'あとで見る']].filter(x=>x[0]).map(x=>`${x[1]} ${x[0]}件`).join('・');
+      box.innerHTML=`<div class="ov-end">${ic('check')}<b>見直しが終わりました</b><p class="info-line">${esc(parts)}</p>${snapped?'<p class="hint-line">始める前の状態は控えてあります(設定の「以前の状態に戻す」から戻せます)。</p>':''}</div>
+        <div class="btn-row end">${hist.length?`<button type="button" class="btn ghost sm" data-ov="undo" style="margin-right:auto;">${ic('undo','sm')}1つ戻る</button>`:''}<button type="button" class="btn" onclick="closeModal()">閉じる</button></div>`;
+      return;
+    }
+    const it=items[pos],d=parseDate(it.obj.deadline),late=daysBetween(it.obj.deadline,todayStr()),rest=items.length-pos;
+    box.innerHTML=`<div class="ov-prog"><span>${pos+1} / ${items.length}</span><span class="ov-bar"><i style="width:${Math.round(pos/items.length*100)}%"></i></span></div>
+      <div class="ov-card"><small>${it.kind==='step'?'ステップ':'夢'}・${esc(it.area.name)}${it.parent?`・${esc(it.parent.length>26?it.parent.slice(0,26)+'…':it.parent)}`:''}</small><b>${esc(it.obj.text)}</b><span class="ov-date">期限 ${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}(${late}日前)</span></div>
+      <div class="ov-lb">日付を先へ送る <span class="hint">今日から数えます</span></div>
+      <div class="chips">${['m1','m3','m6','m12'].map(k=>`<button type="button" class="chip" data-ov="${k}">${ACTS[k].l}</button>`).join('')}<input type="date" id="ovDate" min="${todayStr()}" aria-label="日付を自分で選ぶ" style="width:auto;min-height:40px;"></div>
+      <div class="ov-lb">または</div>
+      <div class="chips">${['done','ongoing','undate','drop'].map(k=>`<button type="button" class="chip" data-ov="${k}">${k==='done'?ic('check','sm'):''}${ACTS[k].l}</button>`).join('')}</div>
+      <p class="hint-line">「継続中」は、期限を決めずに続けていくもの向けです。</p>
+      <div class="btn-row" style="justify-content:space-between;"><button type="button" class="btn ghost sm" data-ov="undo"${hist.length?'':' disabled'}>${ic('undo','sm')}1つ戻る</button><button type="button" class="btn sub sm" data-ov="skip">あとで${ic('right','sm')}</button></div>
+      ${rest>1?`<details class="more" style="margin:14px 0 0;"><summary>${ic('list')}残り${rest}件をまとめて決める${ic('down','chev')}</summary><div class="inner"><p class="info-line" style="margin-bottom:8px;">いま表示しているものを含む、残りすべてに同じ操作をします。「1つ戻る」でまとめて取り消せます。</p><div class="chips"><button type="button" class="chip" data-ovall="m3">すべて3か月後へ</button><button type="button" class="chip" data-ovall="m6">すべて半年後へ</button><button type="button" class="chip" data-ovall="undate">すべて日付を外す</button></div></div></details>`:''}`;
+  }
+  $('ovBody').addEventListener('click',e=>{
+    const all=e.target.closest('[data-ovall]');
+    if(all){batch++;for(;pos<items.length;pos++)change(items[pos],all.dataset.ovall,batch);scheduleSave();draw();return;}
+    const b=e.target.closest('[data-ov]');if(!b||pos>items.length)return;const k=b.dataset.ov;
+    if(k==='undo'){undo();return;}
+    if(pos>=items.length)return;
+    batch++;
+    if(k==='skip')hist.push({skip:true,b:batch});else{change(items[pos],k,batch);scheduleSave();}
+    pos++;draw();
+  });
+  $('ovBody').addEventListener('change',e=>{
+    if(e.target.id!=='ovDate'||pos>=items.length)return;const v=e.target.value;
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(v)||v<todayStr())return;
+    batch++;change(items[pos],'custom',batch,v);scheduleSave();pos++;draw();
+  });
+  draw();
+  modalOnClose=()=>{flushSave();render();};
+}
+
 function renderLife(){
   const m=$('lifeMission');if(document.activeElement!==m)m.value=db.life.mission.text;
   document.querySelectorAll('#lifeView .chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.lview===lifeView)));
   const dreams=allDreams();
   $('lifeCount').textContent=dreams.length?`夢 ${dreams.length}・進行中 ${dreams.filter(x=>x.d.status==='doing').length}・完了 ${dreams.filter(x=>x.d.status==='done').length}`:'';
-  $('lifeBody').innerHTML=lifeView==='timeline'?lifeTimelineHTML():(lifeArea&&db.life.areas[lifeArea]?lifeAreaHTML(db.life.areas[lifeArea]):lifeOverviewHTML());
+  $('lifeBody').innerHTML=lifeView==='timeline'?lifeTimelineHTML():lifeView==='board'?lifeBoardHTML():(lifeArea&&db.life.areas[lifeArea]?lifeAreaHTML(db.life.areas[lifeArea]):lifeOverviewHTML());
+  const ov=overdueItems().length;$('lifeOverdue').hidden=!ov;
+  if(ov)$('lifeOverdueText').textContent=`期限を過ぎた夢・ステップが ${ov}件あります`;
+  hydrateImages($('lifeBody'));
 }
 function lifeOverviewHTML(){
-  const tiles=lifeAreas().map(a=>`<button type="button" class="mtile" data-area="${a.id}" aria-label="${esc(a.name)}を開く">
+  const tiles=lifeAreas().map(a=>`<button type="button" class="mtile" data-area="${a.id}"${a.image?` data-img="${esc(a.image)}"`:''} aria-label="${esc(a.name)}を開く">
       <span class="mt-name">${esc(a.name)}</span>
       <span class="mt-theme${hasText(a.theme)?'':' mt-empty'}">${esc(hasText(a.theme)?a.theme:'ありたい姿を書く')}</span>
       <span class="mt-dots" aria-hidden="true">${a.dreams.map(d=>`<i class="${d.status}${hasText(d.text)?' has':''}"></i>`).join('')}</span>
@@ -1831,13 +2078,13 @@ function lifeAreaHTML(a){
   const tiles=a.dreams.map((d,i)=>{
     const info=deadlineInfo(d.deadline,d.status),has=hasText(d.text),st=stepStat(d);
     const foot=info.over?'期限超過':(d.deadline?info.date:(d.status==='todo'?(st.total?'':'日付を入れる'):dstatusLabel(d.status)));
-    return `<button type="button" class="mtile dream ${d.status}" data-dream="${i}" aria-label="夢${i+1}を編集">
+    return `<button type="button" class="mtile dream ${d.status}" data-dream="${i}"${d.image?` data-img="${esc(d.image)}"`:''} aria-label="夢${i+1}を編集">
       <span class="mt-text${has?'':' mt-empty'}">${esc(has?d.text:'＋ 夢を書く')}</span>
       ${has?`<span class="mt-footrow"><span class="mt-foot${info.over?' over':''}">${esc(foot)}</span>${st.total?`<span class="mt-steps" title="できたステップ">${st.done}/${st.total}</span>`:''}</span>`:''}
     </button>`;
   });
-  tiles.splice(4,0,`<button type="button" class="mtile center" data-center="theme" aria-label="${esc(a.name)}のありたい姿を編集"><span class="mt-name">${esc(a.name)}</span><span class="mt-theme">${esc(hasText(a.theme)?a.theme:'ありたい姿を書く')}</span></button>`);
-  return `<div class="life-back"><button type="button" class="pill-btn" id="lifeBack">${ic('left','sm')}全体に戻る</button><b>${esc(a.name)}</b></div><div class="mandala">${tiles.join('')}</div><p class="hint-line">マスをタップすると、夢・期限・ステップを編集できます。右下の数字は「できたステップ / ステップの数」です。</p>`;
+  tiles.splice(4,0,`<button type="button" class="mtile center" data-center="theme"${a.image?` data-img="${esc(a.image)}"`:''} aria-label="${esc(a.name)}のありたい姿を編集"><span class="mt-name">${esc(a.name)}</span><span class="mt-theme">${esc(hasText(a.theme)?a.theme:'ありたい姿を書く')}</span></button>`);
+  return `<div class="life-back"><button type="button" class="pill-btn" id="lifeBack">${ic('left','sm')}全体に戻る</button><b>${esc(a.name)}</b></div><div class="mandala">${tiles.join('')}</div><p class="hint-line">マスをタップすると、夢・画像・期限・ステップを編集できます。右下の数字は「できたステップ / ステップの数」です。</p>`;
 }
 function lifeTimelineHTML(){
   const today=todayStr(),items=[];
@@ -1859,7 +2106,7 @@ function lifeTimelineHTML(){
   let html='';
   if(past.length){
     const over=past.filter(it=>deadlineInfo(it.deadline,it.status).over).length;
-    html+=`<details class="more" style="margin:0 0 14px;"><summary>${ic(over?'alert':'check')}${over?`期限を過ぎたもの ${over}件`:`過ぎた日付のもの ${past.length}件`}${ic('down','chev')}</summary><div class="inner">${over?'<p class="info-line" style="margin-bottom:10px;">責めるための一覧ではありません。日付を先へ延ばす・小さくする・やめる、のどれかを選べば十分です。</p>':''}${past.slice().reverse().map(it=>row(it,true)).join('')}</div></details>`;
+    html+=`<details class="more" style="margin:0 0 14px;"><summary>${ic(over?'alert':'check')}${over?`期限を過ぎたもの ${over}件`:`過ぎた日付のもの ${past.length}件`}${ic('down','chev')}</summary><div class="inner">${over?'<p class="info-line" style="margin-bottom:10px;">責めるための一覧ではありません。日付を先へ延ばす・小さくする・やめる、のどれかを選べば十分です。</p><div class="btn-row" style="margin:0 0 12px;"><button type="button" class="btn sm" id="ovStart">1件ずつ見直す</button></div>':''}${past.slice().reverse().map(it=>row(it,true)).join('')}</div></details>`;
   }
   let cur='';
   coming.forEach(it=>{const y=it.deadline.slice(0,4);if(y!==cur){cur=y;html+=`<div class="tl-year">${y}年${by&&parseInt(y)>=by?`<span class="dtag">${parseInt(y)-by}歳になる年</span>`:''}</div>`;}html+=row(it,false);});
@@ -1873,6 +2120,7 @@ function openDream(areaId,i,openStepId){
   openModal(`<button type="button" class="icon-btn close" aria-label="閉じる" onclick="closeModal()">${ic('x')}</button>
     <h3>${esc(a.name)}・夢${i+1}</h3><p class="msub">夢を、日付のついた小さなステップに分けると動き出します。</p>
     <div class="field"><label class="lb" for="dmText">夢・目標</label><textarea id="dmText" maxlength="140" placeholder="例:フルマラソンを完走する" style="min-height:64px;">${esc(d.text)}</textarea></div>
+    ${imageFieldHTML('dmI')}
     <div class="field"><label class="lb" for="dmDeadline">いつまでに <span class="hint">任意</span></label><input type="date" id="dmDeadline" value="${d.deadline}" style="max-width:220px;"><div class="age-line" id="dmAge"></div></div>
     <div class="field"><span class="lb" id="dmStLb">状態</span><div class="chips" id="dmStatus" role="group" aria-labelledby="dmStLb">${DSTATUS.map(s=>`<button type="button" class="chip" data-st="${s.k}" aria-pressed="${d.status===s.k}">${s.l}</button>`).join('')}</div></div>
     <div class="field">
@@ -1891,6 +2139,7 @@ function openDream(areaId,i,openStepId){
   const upd=()=>{touchArea(a);scheduleSave();};
   const age=()=>{const info=deadlineInfo(d.deadline,d.status);$('dmAge').textContent=info.text;};age();
   const drawStatus=()=>{$('dmStatus').querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.st===d.status)));};
+  bindImageField('dmI',()=>d.image,v=>{d.image=v;upd();});
   const stepById=id=>d.steps.find(s=>s.id===id);
   const drawSteps=()=>{
     const st=stepStat(d);
@@ -1968,11 +2217,13 @@ function openAreaEdit(areaId){
     <h3>分野とありたい姿</h3><p class="msub">この分野で、最終的にどうありたいかを一文で。</p>
     <div class="field"><label class="lb" for="arName">分野名</label><input type="text" id="arName" maxlength="20" value="${esc(a.name)}"></div>
     <div class="field"><label class="lb" for="arTheme">ありたい姿</label><textarea id="arTheme" maxlength="160" style="min-height:64px;" placeholder="例:心身ともに健康で、やりたいことに挑戦できている">${esc(a.theme)}</textarea></div>
+    ${imageFieldHTML('arI')}
     <div class="field"><label class="lb" for="arDeadline">いつまでに <span class="hint">任意</span></label><input type="date" id="arDeadline" value="${a.theme_deadline}" style="max-width:220px;"><div class="age-line" id="arAge"></div></div>
     <div class="field"><span class="lb" id="arStLb">状態</span><div class="chips" id="arStatus" role="group" aria-labelledby="arStLb">${DSTATUS.map(s=>`<button type="button" class="chip" data-st="${s.k}" aria-pressed="${a.theme_status===s.k}">${s.l}</button>`).join('')}</div></div>
     <div class="btn-row end"><button type="button" class="btn" onclick="closeModal()">閉じる</button></div>`,'分野を編集',hasText(a.theme)?null:'#arTheme');
   const upd=()=>{touchArea(a);scheduleSave();};
   const age=()=>{$('arAge').textContent=deadlineInfo(a.theme_deadline,a.theme_status).text;};age();
+  bindImageField('arI',()=>a.image,v=>{a.image=v;upd();});
   $('arName').addEventListener('input',e=>{a.name=e.target.value.trim()||LIFE_AREA_NAMES[a.order];upd();});
   $('arTheme').addEventListener('input',e=>{a.theme=e.target.value;upd();});
   $('arDeadline').addEventListener('input',e=>{a.theme_deadline=/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)?e.target.value:'';upd();age();});
@@ -1993,6 +2244,8 @@ function renderDreamCard(){
   if(ns){const si=deadlineInfo(ns.deadline,ns.status);se.textContent=`次のステップ: ${ns.text}${si.date?`(〜${si.date})`:''}`;}
   else se.textContent=x.d.steps.length?'ステップはすべて完了しています':'タップして、最初のステップを決める';
   $('dreamOpen').onclick=()=>openDream(x.area.id,x.i,ns?ns.id:undefined);
+  const di=$('dreamImg');if(di.dataset.img!==(x.d.image||undefined)||!x.d.image)setImgTarget(di,x.d.image);
+  di.onclick=$('dreamOpen').onclick;hydrateImages(card);
   $('dreamNext').onclick=()=>{dreamOffset++;renderDreamCard();};
 }
 
@@ -2568,6 +2821,7 @@ async function syncNow(manual){
     if(cloud.cfg.lastBackupDay!==today){try{await cloudDb.backup(uid,today,pushed);cloud.cfg.lastBackupDay=today;}catch(e){}}
     cloud.cfg.lastUser=uid;cloud.lastSync=new Date();cloud.cfg.lastSync=cloud.lastSync.toISOString();saveCloudCfg();
     cloud.state='ok';cloud.err='';
+    syncImages();   // 画像は記録とは別に、あとから送る(失敗しても記録の同期は成功のまま)
     if(manual)toast('同期しました');
   }catch(e){
     const info=cloudErrInfo(e);cloud.state=info.state;cloud.err=info.msg;
@@ -2757,14 +3011,14 @@ function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show')
 function openModal(html,label,focusSel){
   const bg=$('modalBg'),box=$('modalBox');
   if(!bg.classList.contains('show'))lastFocus=document.activeElement;
-  modalOnClose=null;
+  modalOnClose=null;modalPaste=null;
   box.innerHTML=html;box.setAttribute('aria-label',label||'');bg.classList.add('show');box.scrollTop=0;
   const f=focusSel===null?box:(focusSel?box.querySelector(focusSel):null)||box.querySelector('input,select,textarea')||box.querySelector('.btn')||box;
   f.focus();
 }
 function closeModal(){
   const bg=$('modalBg');if(!bg.classList.contains('show'))return;
-  bg.classList.remove('show');$('modalBox').innerHTML='';
+  bg.classList.remove('show');$('modalBox').innerHTML='';modalPaste=null;
   if(modalResolver){const r=modalResolver;modalResolver=null;r(false);}
   if(modalOnClose){const f=modalOnClose;modalOnClose=null;f();}
   if(lastFocus&&document.contains(lastFocus)){try{lastFocus.focus();}catch(e){}}
@@ -2897,6 +3151,9 @@ function init(){
     const v=ev.target.closest('[data-lview]');
     if(v){lifeView=v.dataset.lview;renderLife();return;}
     if(ev.target.closest('#lifeBack')){lifeArea=null;renderLife();return;}
+    if(ev.target.closest('#ovStart')||ev.target.closest('#lifeOverdueBtn')){openOverdueReview();return;}
+    const vb=ev.target.closest('.vb-card');
+    if(vb){if(vb.dataset.dream!==undefined)openDream(vb.dataset.area,parseInt(vb.dataset.dream));else openAreaEdit(vb.dataset.area);return;}
     const tl=ev.target.closest('.tl-row');
     if(tl){openDream(tl.dataset.area,parseInt(tl.dataset.dream),tl.dataset.step||undefined);return;}
     const t=ev.target.closest('.mtile');if(!t)return;
@@ -3014,6 +3271,8 @@ function init(){
   writeTab=defaultWriteTab();
   switchScreen('home');
   render();
+  document.addEventListener('paste',ev=>{if(modalPaste&&$('modalBg').classList.contains('show'))modalPaste(ev);});
+  setTimeout(syncImages,8000);
   cloudInit();   // 接続先が設定済みなら、ここから同期を始める(未設定なら何もしない)
   // 公開URLで開いたときだけ:通信できないときも起動できるよう、画面一式を端末に控える
   if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{});}
