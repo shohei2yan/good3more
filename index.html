@@ -326,6 +326,18 @@
   .tl-text,.yg-text{display:block;font-weight:700;font-size:14.5px;line-height:1.45;word-break:break-word;}
   .tl-sub,.yg-sub{display:block;font-size:12px;color:var(--sub);}
   .yg-row.done .yg-text{color:var(--sub);} .yg-row.dropped{opacity:.6;} .yg-row.dropped .yg-text{text-decoration:line-through;}
+  .coach-head{background:linear-gradient(135deg,#4c1d95,#6d4fe0);color:#fff;border-radius:16px;padding:18px 20px;margin-bottom:16px;}
+  .coach-head small{display:block;font-size:12px;opacity:.85;font-weight:600;margin-bottom:4px;}
+  .coach-head b{font-size:17px;line-height:1.55;display:block;word-break:break-word;}
+  .coach-list{list-style:none;font-size:14.5px;}
+  .coach-list li{padding:9px 0;border-bottom:1px dashed var(--line);line-height:1.7;word-break:break-word;}
+  .coach-list li:last-child{border-bottom:none;padding-bottom:0;}
+  .coach-list li:first-child{padding-top:0;}
+  .coach-list .cg{font-weight:700;display:block;}
+  .coach-list .btn{margin-top:6px;}
+  .coach-focus{background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:700;color:#7c3a03;line-height:1.6;word-break:break-word;}
+  .coach-focus small{display:block;font-size:12px;font-weight:700;color:var(--amber);margin-bottom:2px;}
+  .coach-raw{white-space:pre-wrap;font-size:14.5px;line-height:1.8;word-break:break-word;}
   .mtile.act.sel{border-color:var(--primary);box-shadow:inset 0 0 0 1.5px var(--primary);}
   .mtile.act.done{background:#f4fbf8;border-color:#bfe8d6;}
   .mtile.act .mt-foot{color:var(--green-ink);font-weight:700;}
@@ -495,10 +507,11 @@
       <button type="button" data-screen="habits"><svg class="ic" aria-hidden="true"><use href="#i-habit"/></svg>習慣</button>
       <button type="button" data-screen="goals"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>目標</button>
       <button type="button" data-screen="history"><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg>記録</button>
+      <button type="button" data-screen="coach"><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg>AIコーチ</button>
       <div class="sep" role="presentation"></div>
       <button type="button" data-screen="settings"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg>設定・データ</button>
     </nav>
-    <div class="side-foot">試用版 0.4<br>データはこの端末のブラウザ内に保存されます</div>
+    <div class="side-foot">試用版 0.5<br>データはこの端末のブラウザ内に保存されます</div>
   </aside>
 
   <main>
@@ -588,6 +601,8 @@
               <div class="who"><span id="homeCoachMode"></span><span class="beta">簡易版</span></div>
               <div id="homeCoach"></div>
             </div>
+            <p class="hint-line" id="homeAiHeadline" hidden></p>
+            <div class="btn-row"><button type="button" class="btn sub sm" data-goto="coach"><svg class="ic sm" aria-hidden="true"><use href="#i-spark"/></svg>AIコーチのレポート</button></div>
           </div>
         </div>
       </section>
@@ -804,6 +819,33 @@
         <div class="card"><div id="historyList"></div></div>
       </section>
 
+      <!-- ================= AI COACH ================= -->
+      <section class="screen" id="s-coach" aria-label="AIコーチ">
+        <h2 class="screen-title">AIコーチ</h2>
+        <p class="screen-sub">夢・目標・日々の記録を通して読み、気づきと次の一歩を返します。</p>
+
+        <div class="card" id="coachGate" hidden>
+          <h3><svg class="ic" aria-hidden="true"><use href="#i-cloud"/></svg>クラウド同期へのログインが必要です</h3>
+          <p class="info-line">AIコーチは、ログインした本人の記録だけを使います。</p>
+          <div class="btn-row"><button type="button" class="btn sub sm" data-goto="settings">設定・データを開く</button></div>
+        </div>
+
+        <div class="card" id="coachCtl">
+          <div class="btn-row" style="margin-top:0;">
+            <button type="button" class="btn" id="coachMake"><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg><span id="coachMakeLb">レポートを作る</span></button>
+          </div>
+          <p class="info-line" id="coachStatus" role="status" aria-live="polite" style="margin-top:10px;"></p>
+          <p class="hint-line">AIに送る内容:生涯の夢、年間目標、直近14日の記録、週・月の目標、習慣。作成には1分ほどかかります。作れるのは7日間に3回までです。</p>
+        </div>
+
+        <div id="coachReport"></div>
+
+        <div class="card" id="coachHistory" hidden>
+          <h3><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg>これまでのレポート</h3>
+          <div class="chips" id="coachHistList"></div>
+        </div>
+      </section>
+
       <!-- ================= SETTINGS ================= -->
       <section class="screen" id="s-settings" aria-label="設定・データ">
         <h2 class="screen-title">設定・データ</h2>
@@ -855,7 +897,7 @@
             <input type="month" id="birthYm" placeholder="1985-04" style="max-width:220px;">
           </div>
           <div class="btn-row" style="margin-top:0;"><button type="button" class="btn ghost sm" id="guideAgain">はじめのガイドをもう一度表示</button></div>
-          <p class="hint-line">Good 3 More 試用版 0.4</p>
+          <p class="hint-line">Good 3 More 試用版 0.5</p>
         </div>
 
         <div class="card danger-zone">
@@ -884,13 +926,13 @@
 
 <script>
 /* =========================================================
-   Good 3 More — 試用版 0.4 (single file / local storage)
+   Good 3 More — 試用版 0.5 (single file / local storage)
    ・データ保存キーは v1 から変更なし(既存の記録をそのまま読み込みます)
    ・移行は「項目を足すだけ」の非破壊方式
    ========================================================= */
 const STORE_KEY='good3more:v1';
 const SNAP_KEY='good3more:snapshots';
-const SCHEMA_VERSION=3;
+const SCHEMA_VERSION=4;
 const SNAP_AUTO_MAX=12, SNAP_DAILY_MAX=14, SNAP_MANUAL_MAX=6, AUTO_MIN_GAP=10*60*1000;
 const HABIT_MAX=20;
 const WD_JP=['日','月','火','水','木','金','土'];
@@ -912,6 +954,7 @@ let goalTab='weekly';
 let goalCursor={weekly:mondayOf(todayStr()),monthly:monthKey(todayStr())};
 let yearCursor=new Date().getFullYear(), yearFilter='all';
 let lifeView='mandala', lifeArea=null, dreamOffset=0;
+let coachBusy=false, coachMsg='', coachSel=null;
 let lastSaved=null, saveTimer=null, dirty=false, saveError=false, externalChange=false;
 let lastFocus=null, modalResolver=null, modalOnClose=null;
 
@@ -935,7 +978,7 @@ function shortDate(s){const d=parseDate(s);return `${d.getMonth()+1}/${d.getDate
 function dayWord(s){const t=todayStr();if(s===t)return '今日';if(s===addDays(t,-1))return '昨日';if(s===addDays(t,1))return '明日';return humanDate(s);}
 
 /* ---------- store: load / migrate ---------- */
-function freshStore(){const now=new Date().toISOString();return{schema_version:SCHEMA_VERSION,entries:{},habits:[],goals:{weekly:{},monthly:{}},life:normalizeLife(null),year_goals:{},settings:{coach_mode:'gentle',onboarding_dismissed:false,nudge_dismissed:{},birth_ym:''},deleted:{entries:{},habits:{},goals:{},year_goals:{}},created_at:now,updated_at:now};}
+function freshStore(){const now=new Date().toISOString();return{schema_version:SCHEMA_VERSION,entries:{},habits:[],goals:{weekly:{},monthly:{}},life:normalizeLife(null),year_goals:{},coach_reports:{},settings:{coach_mode:'gentle',onboarding_dismissed:false,nudge_dismissed:{},birth_ym:''},deleted:{entries:{},habits:{},goals:{},year_goals:{}},created_at:now,updated_at:now};}
 // 生涯の構造: 中心(mission)+ 8分野(a1〜a8)。各分野に「ありたい姿」と8つの夢
 function normalizeDream(d){d=(d&&typeof d==='object')?d:{};return{text:String(d.text||''),note:String(d.note||''),deadline:/^\d{4}-\d{2}-\d{2}$/.test(d.deadline||'')?d.deadline:'',status:DSTATUS.some(s=>s.k===d.status)?d.status:'todo'};}
 function normalizeLife(l){
@@ -992,6 +1035,10 @@ function migrate(s){
   const yg={};
   Object.entries((s.year_goals&&typeof s.year_goals==='object')?s.year_goals:{}).forEach(([id,g])=>{const n=normalizeYearGoal(Object.assign({},g,{id}));if(n.text.trim())yg[id]=n;});
   s.year_goals=yg;
+  // AIコーチのレポート(作成日時をIDにして保存)
+  const cr={};
+  Object.entries((s.coach_reports&&typeof s.coach_reports==='object')?s.coach_reports:{}).forEach(([id,r])=>{if(r&&typeof r==='object'&&r.report&&typeof r.report==='object')cr[id]=Object.assign({},r,{id});});
+  s.coach_reports=cr;
   s.deleted=(s.deleted&&typeof s.deleted==='object')?s.deleted:{};
   ['entries','habits','goals','year_goals'].forEach(k=>{if(!s.deleted[k]||typeof s.deleted[k]!=='object')s.deleted[k]={};});
   s.schema_version=SCHEMA_VERSION;
@@ -1267,7 +1314,7 @@ function loadFieldsForDate(){
    Rendering
    ========================================================= */
 function render(){
-  renderTopbar();renderHome();renderWrite();renderHabits();renderGoals();renderHistory();renderSettings();
+  renderTopbar();renderHome();renderWrite();renderHabits();renderGoals();renderHistory();renderCoach();renderSettings();
   loadFieldsForDate();
   const dw=dayWord(selectedDate);
   document.querySelectorAll('.dw').forEach(el=>el.textContent=dw);
@@ -1362,6 +1409,10 @@ function renderHome(){
 
   $('homeCoachMode').textContent=COACH_MODES[db.settings.coach_mode];
   $('homeCoach').textContent=coachLine(e);
+  const lastRep=coachReportsSorted()[0],hl=$('homeAiHeadline');
+  const hlText=lastRep&&lastRep.report&&typeof lastRep.report.headline==='string'?lastRep.report.headline.trim():'';
+  hl.hidden=!hlText;
+  if(hlText){const d=new Date(lastRep.created_at);hl.textContent=`AIコーチ(${d.getMonth()+1}/${d.getDate()}): ${hlText}`;}
 }
 
 function renderOnboard(){
@@ -2190,6 +2241,7 @@ function mergeStores(localRaw,remoteRaw){
   // 生涯:ミッションは新しい方、分野は分野ごとに新しい方。年間目標は1件ごと
   out.life={mission:tsOf(b.life.mission.updated_at)>tsOf(a.life.mission.updated_at)?b.life.mission:a.life.mission,areas:pickMap(a.life.areas,b.life.areas,{})};
   out.year_goals=pickMap(a.year_goals,b.year_goals,del.year_goals);
+  out.coach_reports=pickMap(a.coach_reports,b.coach_reports,{});
   // この版が知らない項目(将来の版が足したもの)は、消さずにそのまま残す
   Object.keys(b).forEach(k=>{if(!(k in out))out[k]=b[k];});
   out.deleted=del;
@@ -2363,7 +2415,7 @@ async function syncNow(manual){
     if(syncQueued){syncQueued=false;syncSoon(3000);}
   }
 }
-function refreshCloudUI(){updateSaveStatus();renderCloud();const w=$('infoWhere');if(w)w.textContent=cloud.user?`この端末 + クラウド(${cloud.user.email||'ログイン中'})`:'この端末のブラウザ内(他の端末とは共有されません)';}
+function refreshCloudUI(){updateSaveStatus();renderCloud();renderCoach();const w=$('infoWhere');if(w)w.textContent=cloud.user?`この端末 + クラウド(${cloud.user.email||'ログイン中'})`:'この端末のブラウザ内(他の端末とは共有されません)';}
 function renderCloud(){
   const body=$('cloudBody');if(!body)return;
   const st=!cloudConfigured()?'A':(cloud.user?'C':'B');
@@ -2406,6 +2458,120 @@ function renderCloud(){
   }
   if(st==='C')$('cloudStateText').textContent=cloudStatusLabel()+((cloud.state==='error'||cloud.state==='offline')&&cloud.err?' — '+cloud.err:'');
   if(st==='B'){const m=$('cloudMsg');if(m)m.textContent=cloud.note||((cloud.state==='error'||cloud.state==='offline')?cloud.err:'');}
+}
+
+/* =========================================================
+   AIコーチ(週次レポート)
+   ボタンを押したときだけ、Supabase内の関数を通じてAIに依頼する。
+   AIのキーはアプリには無い。送る内容は下の buildCoachPayload がすべて。
+   ========================================================= */
+function buildCoachPayload(){
+  const t=todayStr(),wk=mondayOf(t),mk=monthKey(t),y=parseDate(t).getFullYear();
+  const cut=(s,n)=>{s=String(s||'').trim();return s.length>n?s.slice(0,n)+'…':s;};
+  const clean=o=>{Object.keys(o).forEach(k=>{const v=o[k];if(v===''||v==null||(Array.isArray(v)&&!v.length))delete o[k];});return o;};
+  const gLabel=k=>{const s=GSTATUS.find(x=>x.k===k);return s?s.l:'';};
+  const ygText=id=>{const g=id?db.year_goals[id]:null;return g?g.text:'';};
+  const goalList=(type,key)=>goalItemsOf(type,key).map((it,i)=>({it,i})).filter(x=>hasText(x.it.text)).map(x=>{
+    const p=goalProgress(type,key,x.i);
+    return clean({text:x.it.text,rating:gLabel(x.it.status),review:x.it.review,days_worked:p.worked||null,days_achieved:p.achieved||null,weeks_in_a_row:type==='weekly'?weeklyStreak(x.it.text,key):null,year_goal:ygText(x.it.parent)});
+  });
+  const life=clean({mission:db.life.mission.text,areas:lifeAreas().map(a=>clean({name:a.name,ideal:a.theme,dreams:a.dreams.filter(d=>hasText(d.text)).map(d=>clean({text:d.text,status:dstatusLabel(d.status),deadline:d.deadline}))})).filter(a=>a.ideal||a.dreams)});
+  const year_goals=yearGoalsOf(y).map(g=>{
+    const r=yearGoalRollup(g.id);
+    return clean({text:g.text,why:cut(g.motive,160),plan:cut(g.detail,220),area:g.area?db.life.areas[g.area].name:'',status:dstatusLabel(g.status),end:g.end,actions:g.actions.filter(a=>hasText(a.text)).map(a=>a.text+(a.done?'(できた)':'')),notes:g.logs.slice(-3).map(l=>`${l.d} ${l.text}`),linked_goals:r.items||null,days_worked:r.worked||null,result:cut(g.result,160)});
+  });
+  const weekly_goals=[0,1,2,3].map(n=>addDays(wk,-7*n)).map(k=>clean({week_start:k,goals:goalList('weekly',k),review:cut(normalizeGoal(db.goals.weekly[k]).review,300)})).filter(w=>w.goals||w.review);
+  const monthly_goals=[mk,addMonths(mk,-1)].map(k=>clean({month:k,goals:goalList('monthly',k),review:cut(normalizeGoal(db.goals.monthly[k]).review,300)})).filter(m=>m.goals||m.review);
+  const daily_records=[];
+  for(let i=13;i>=0;i--){
+    const d=addDays(t,-i);if(!db.entries[d])continue;
+    const en=getEntry(d,false);
+    const done=Object.keys(en.habit_logs).filter(id=>en.habit_logs[id]==='done').map(id=>{const h=db.habits.find(x=>x.id===id);return h?h.name+(hasText(en.habit_memos[id])?`(${en.habit_memos[id]})`:''):null;}).filter(Boolean);
+    daily_records.push(clean({date:d,weekday:WD_JP[parseDate(d).getDay()],top_goal:en.morning.top_goal,first_step:en.morning.first_step,care:en.morning.strategy,linked_to:linkLabel(linkOf(en)),result:en.night.goal_result,good:en.night.good.filter(hasText),more:en.night.more,tomorrow:en.night.tomorrow_action,learned:en.night.insights,grateful:en.night.gratitude,events:cut(en.night.events,400),habits_done:done}));
+  }
+  const habits=db.habits.filter(h=>h.active!==false).map(h=>{
+    let done=0,sched=0;
+    for(let i=13;i>=0;i--){const d=addDays(t,-i),isDone=habitDone(h.id,d),on=habitCounts(h,d);if(on||isDone){sched++;if(isDone)done++;}}
+    return{name:h.name,frequency:scheduleLabel(h),last_14_days:`${done}/${sched}`,total:habitTotal(h.id)};
+  });
+  return clean({today:t,weekday:WD_JP[parseDate(t).getDay()],age:ageAt(t),life:Object.keys(life).length?life:null,year_goals,monthly_goals,weekly_goals,daily_records,habits});
+}
+function coachReportsSorted(){return Object.values(db.coach_reports).sort((p,q)=>p.created_at<q.created_at?1:-1);}
+function coachCostText(r){   // 使用量と、費用の目安(Opus 5.5 の単価: 入力$4・出力$20/100万トークン、1ドル150円で計算)
+  const u=r.usage||{},i=Number(u.input_tokens)||0,o=Number(u.output_tokens)||0;
+  if(!i&&!o)return '';
+  const yen=/^claude-opus-5-5/.test(r.model||'')?`・目安 約${Math.max(1,Math.round((i*4+o*20)/1e6*150))}円`:'';
+  return `使用量 入力${i.toLocaleString()}・出力${o.toLocaleString()}トークン${yen}`;
+}
+async function coachGenerate(){
+  if(coachBusy)return;
+  if(!cloud.user||!cloud.client){toast('クラウド同期にログインすると使えます');return;}
+  flushSave();
+  const payload=buildCoachPayload();
+  if(!payload.daily_records){coachMsg='直近14日の記録がまだありません。朝か夜の記録が数日分たまってからお試しください。';renderCoach();return;}
+  coachBusy=true;coachMsg='作成中です。1分ほどかかります。この画面のままお待ちください…';renderCoach();
+  try{
+    const{data,error}=await cloud.client.functions.invoke('coach',{body:{payload,mode:db.settings.coach_mode}});
+    if(error){
+      let msg='レポートを作成できませんでした。時間をおいてお試しください。';
+      try{const ctx=error.context;if(ctx&&typeof ctx.json==='function'){const j=await ctx.json();if(j&&j.message)msg=j.message+(j.error==='no_key'?'(Supabaseの設定に、AIのキーを登録すると使えるようになります)':'')+(j.detail?` 詳細: ${j.detail}`:'');}}catch(e){}
+      coachMsg=msg;return;
+    }
+    if(!data||!data.report||typeof data.report!=='object'){coachMsg='レポートを受け取れませんでした。もう一度お試しください。';return;}
+    const now=new Date().toISOString(),id='cr_'+now;
+    db.coach_reports[id]={id,created_at:now,updated_at:now,week:mondayOf(todayStr()),mode:db.settings.coach_mode,model:String(data.model||''),report:data.report,usage:data.usage||{},truncated:!!data.truncated};
+    coachSel=id;
+    coachMsg=`作成しました。あと${Number(data.remaining)||0}回作れます(7日間に3回まで)。`;
+    saveNow(true);
+  }catch(e){
+    coachMsg='通信できませんでした。接続を確認して、もう一度お試しください。';
+  }finally{
+    coachBusy=false;renderCoach();renderHome();
+  }
+}
+function coachReportHTML(r){
+  const rep=r.report||{};
+  const strs=a=>(Array.isArray(a)?a:[]).filter(x=>typeof x==='string'&&x.trim());
+  const sec=(icon,title,body)=>body?`<div class="card"><h3>${ic(icon)}${title}</h3>${body}</div>`:'';
+  const list=items=>items.length?`<ul class="coach-list">${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'';
+  const d=new Date(r.created_at),when=isNaN(d)?'':`${d.getMonth()+1}/${d.getDate()} ${hm(d)} 作成`;
+  let html=`<div class="coach-head"><small>${esc(when)}・${esc(COACH_MODES[r.mode]||'コーチ')}</small><b>${esc(typeof rep.headline==='string'&&rep.headline.trim()?rep.headline:'今週のふりかえり')}</b></div>`;
+  if(typeof rep.raw==='string'&&rep.raw.trim())html+=`<div class="card"><div class="coach-raw">${esc(rep.raw)}</div></div>`;
+  html+=sec('heart','できていること',list(strs(rep.wins)));
+  html+=sec('up','見えてきた傾向',list(strs(rep.patterns)));
+  html+=sec('target','夢・目標とのつながり',list(strs(rep.dream_links)));
+  const stalled=(Array.isArray(rep.stalled)?rep.stalled:[]).filter(x=>x&&typeof x==='object'&&(x.goal||x.suggestion));
+  html+=sec('alert','動いていない目標',stalled.length?`<ul class="coach-list">${stalled.map(x=>`<li><span class="cg">${esc(x.goal||'')}</span>${esc(x.suggestion||'')}</li>`).join('')}</ul>`:'');
+  const next=strs(rep.next_week);
+  html+=sec('arrow','来週試すこと',next.length?`<ul class="coach-list">${next.map((x,i)=>`<li>${esc(x)}<br><button type="button" class="btn sub sm" data-coach-add="${i}">${ic('plus','sm')}週の目標に入れる</button></li>`).join('')}</ul>`:'');
+  if(typeof rep.one_focus==='string'&&rep.one_focus.trim())html+=`<div class="card"><div class="coach-focus"><small>1つだけ意識するなら</small>${esc(rep.one_focus)}</div></div>`;
+  if(typeof rep.question==='string'&&rep.question.trim())html+=`<div class="card"><div class="coach-box"><div class="who">${ic('spark','sm')}コーチからの問い</div>${esc(rep.question)}</div></div>`;
+  const cost=coachCostText(r);
+  html+=`<p class="hint-line" style="margin:-4px 0 16px;">${esc([r.model,cost,r.truncated?'途中で長さの上限に達しました':''].filter(Boolean).join('・'))}</p>`;
+  return html;
+}
+function renderCoach(){
+  const signedIn=!!cloud.user;
+  $('coachGate').hidden=signedIn;$('coachCtl').hidden=!signedIn;
+  const btn=$('coachMake');btn.disabled=coachBusy;$('coachMakeLb').textContent=coachBusy?'作成中…':'レポートを作る';
+  $('coachStatus').textContent=coachMsg;
+  const all=coachReportsSorted();
+  if(!coachSel||!db.coach_reports[coachSel])coachSel=all.length?all[0].id:null;
+  $('coachReport').innerHTML=coachSel?coachReportHTML(db.coach_reports[coachSel]):`<div class="card"><div class="empty-state">${ic('spark')}<br>まだレポートはありません。<br>記録が数日分たまったら、「レポートを作る」を押してみましょう。</div></div>`;
+  $('coachHistory').hidden=all.length<2;
+  $('coachHistList').innerHTML=all.map(r=>{const d=new Date(r.created_at);return `<button type="button" class="chip" data-coach-id="${esc(r.id)}" aria-pressed="${r.id===coachSel}">${d.getMonth()+1}/${d.getDate()} ${hm(d)}</button>`;}).join('');
+}
+// レポートの「来週試すこと」を、週の目標に1タップで入れる(金〜日は来週、月〜木は今週へ)
+function coachAddToWeek(i){
+  const r=coachSel&&db.coach_reports[coachSel];if(!r)return;
+  const item=(Array.isArray(r.report.next_week)?r.report.next_week:[])[i];if(typeof item!=='string'||!item.trim())return;
+  const t=todayStr(),cur=mondayOf(t),wk=daysBetween(cur,t)>=4?addDays(cur,7):cur;
+  const g=normalizeGoal(db.goals.weekly[wk]),tx=item.trim().slice(0,60);
+  if(g.items.some(it=>it.text.trim()===tx)){toast('すでに週の目標に入っています');return;}
+  const idx=g.items.findIndex(it=>!hasText(it.text));
+  if(idx<0){toast(`${wk===cur?'今週':'来週'}の目標は5つ埋まっています`);return;}
+  g.items[idx]={text:tx,review:'',status:'',parent:''};g.period_key=wk;g.updated_at=new Date().toISOString();db.goals.weekly[wk]=g;
+  saveNow(true);toast(`${wk===cur?'今週':'来週'}の目標に入れました${item.trim().length>60?'(長いので60文字にしています)':''}`);
 }
 
 /* ---- coach(簡易版:記録に応じた定型メッセージ) ---- */
@@ -2635,6 +2801,9 @@ function init(){
   $('historyList').addEventListener('click',ev=>{const b=ev.target.closest('.hist-item');if(b)openDetail(b.dataset.date);});
 
   // settings
+  $('coachMake').addEventListener('click',coachGenerate);
+  $('coachReport').addEventListener('click',ev=>{const b=ev.target.closest('[data-coach-add]');if(b)coachAddToWeek(Number(b.dataset.coachAdd));});
+  $('coachHistList').addEventListener('click',ev=>{const c=ev.target.closest('[data-coach-id]');if(!c)return;coachSel=c.dataset.coachId;coachMsg='';renderCoach();window.scrollTo(0,0);});
   $('coachModeChips').addEventListener('click',ev=>{const c=ev.target.closest('.chip');if(!c)return;db.settings.coach_mode=c.dataset.mode;touchSettings();saveNow(true);renderSettings();renderHome();toast('コーチの話し方を変更しました');});
   $('exportBtn').onclick=exportJSON;
   $('importBtn').onclick=()=>$('importFile').click();
